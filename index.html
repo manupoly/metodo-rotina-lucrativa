@@ -1,0 +1,2072 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filmou / Ganhou — seja pago para fazer o que você já faz em casa</title>
+<meta name="description" content="Existe um mercado pagando por hora para pessoas comuns gravarem a própria rotina doméstica pelo celular. Nada para investir. Este é o método completo até o primeiro recebimento.">
+<meta name="theme-color" content="#f5f3ec">
+<meta property="og:title" content="Filmou / Ganhou — renda em casa gravando a sua rotina">
+<meta property="og:description" content="R$ 25 por hora aprovada. Nada para investir, kit sem custo, recebimento no Pix.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<!--
+================================================================================
+  ⚙️  EDITE APENAS O BLOCO "CONFIG" NO FINAL DO ARQUIVO.
+      Todo link, preço e prazo está centralizado lá.
+      Procure por  ⬅️ TROCAR  para achar o que ainda falta preencher.
+================================================================================
+-->
+
+<style>
+/* ============================================================
+   0. TOKENS
+   ============================================================ */
+/* ------------------------------------------------------------------
+   Paleta da página.
+
+   Regra que não pode ser quebrada: #0fd96b é claro demais para virar
+   texto sobre papel. Ele é COR DE PREENCHIMENTO (botão, barra, ponto).
+   Verde escrito sobre o claro usa --acc-txt (#0b7a44); dentro das
+   faixas escuras o --acc-txt vira o verde vivo, porque lá ele lê.
+   ------------------------------------------------------------------ */
+:root{
+  /* papel — o creme é quente; os neutros derivam DELE e são mais escuros
+     que a base, senão a faixa alternada avança em vez de recuar */
+  --paper:#f5f3ec;
+  --paper-2:#eeebe1;
+  --paper-3:#e6e2d6;
+  --card:#ffffff;
+  /* tinta */
+  --ink:#141414;
+  --ink-2:#5b5b63;
+  --ink-3:#6b6b73;                /* 4.76:1 no papel — é a cor da letra miúda
+                                     e do rodapé legal, precisa passar em AA */
+  --rule:#e2ded2;
+  --rule-2:#c9c4b6;
+  /* escuro */
+  --dark:#141414;
+  --dark-2:#1c1c1c;
+  --dark-3:#262626;
+  --on-dark:#fafafa;
+  --on-dark-2:#a1a1aa;
+  --rule-dark:rgba(250,250,250,.14);
+  /* acento */
+  --acc:#0fd96b;                  /* preenchimento */
+  --acc-rgb:15,217,107;
+  --acc-2:#0e8a4d;                /* success */
+  --acc-txt:#0b7a44;              /* verde legível sobre papel */
+  --acc-on:#141414;               /* texto POR CIMA do verde */
+  --acc-soft:#e8f5ec;
+
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+  --gut:clamp(20px,4.5vw,64px);
+  --maxw:1440px;
+  --ease:cubic-bezier(.19,1,.22,1);
+
+  /* raio e sombra */
+  --r:12px;
+  --r-sm:8px;
+  --sh-xs:0 1px 2px rgba(20,20,20,.05);
+  --sh-card:0 4px 16px rgba(20,20,20,.08);
+  --sh-md:0 4px 12px rgba(20,20,20,.10);
+  /* o "aceso": halo verde projetado — o mesmo efeito do botão deles */
+  --halo:0 2px 10px rgba(var(--acc-rgb),.32);
+  --halo-lg:0 8px 26px rgba(var(--acc-rgb),.42);
+  /* dentro do escuro o verde vira luz de verdade */
+  --glow-1:0 0 10px rgba(var(--acc-rgb),.45);
+  --glow-2:0 0 18px rgba(var(--acc-rgb),.5),0 0 44px rgba(var(--acc-rgb),.22);
+  --glow-3:0 0 26px rgba(var(--acc-rgb),.6),0 0 70px rgba(var(--acc-rgb),.3);
+  --glow-txt:0 0 20px rgba(var(--acc-rgb),.4);
+}
+/* Toda superfície escura precisa estar nesta lista, tenha ou não a classe
+   .dark — quem ficar de fora herda o verde de papel (#0b7a44) sobre preto e
+   sai a 3,4:1. Painel preto novo: acrescente aqui antes de estilizar. */
+.dark,.vs__side,.pricebox,.vid__poster,.calc__side--out,footer{
+  --acc-txt:var(--acc);
+  --halo:var(--glow-2);
+  --halo-lg:var(--glow-3);
+}
+
+/* ============================================================
+   1. RESET / BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.55;font-weight:400;
+  overflow-x:clip;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"ss01","cv05";
+}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+h1,h2,h3,h4{margin:0;font-weight:900;letter-spacing:-.042em;line-height:.94}
+p{margin:0}
+::selection{background:var(--acc);color:var(--acc-on)}
+
+/* grão */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* ============================================================
+   2. LAYOUT
+   ============================================================ */
+.shell{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.band{padding:clamp(72px,11vh,150px) 0;position:relative}
+.band--tight{padding:clamp(52px,7vh,88px) 0}
+.dark{background:var(--dark);color:var(--on-dark);position:relative;isolation:isolate}
+.dark h1,.dark h2,.dark h3{color:var(--on-dark)}
+/* faixa escura = o palco do verde: costura de luz no topo e um foco atrás */
+.band.dark::before{
+  content:"";position:absolute;inset:0 0 auto;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(var(--acc-rgb),.6) 22%,rgba(var(--acc-rgb),.6) 78%,transparent);
+}
+.band.dark::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(72% 55% at 50% 0%,rgba(var(--acc-rgb),.13),transparent 72%);
+}
+
+/* colunas editoriais */
+.cols{display:grid;gap:clamp(28px,4vw,64px)}
+@media(min-width:900px){
+  .cols--12{grid-template-columns:repeat(12,1fr)}
+  .c-4{grid-column:span 4}.c-5{grid-column:span 5}.c-6{grid-column:span 6}
+  .c-7{grid-column:span 7}.c-8{grid-column:span 8}.c-12{grid-column:span 12}
+  /* ancoradas à direita — deixam 1 coluna de respiro antes */
+  .end-4{grid-column:-5/-1}.end-5{grid-column:-6/-1}
+  .end-6{grid-column:-7/-1}.end-7{grid-column:-8/-1}
+}
+
+/* ============================================================
+   3. TIPOGRAFIA
+   ============================================================ */
+.display{font-size:clamp(2.9rem,8.6vw,7rem);letter-spacing:-.048em;line-height:.9}
+.h2{font-size:clamp(2rem,5.2vw,4rem)}
+/* .94 do reset é para manchete: neste tamanho as descendentes encostam */
+.h3{font-size:clamp(1.25rem,2.3vw,1.75rem);letter-spacing:-.03em;line-height:1.14}
+.h4{font-size:clamp(1.05rem,1.6vw,1.22rem);letter-spacing:-.02em;line-height:1.25}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em}
+/* citação de destaque — com medida de linha, para não correr de ponta a ponta */
+.pull{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.22rem,2.3vw,1.7rem);line-height:1.3;letter-spacing:-.02em;
+  color:var(--ink);max-width:30ch;
+}
+.dark .pull{color:var(--on-dark)}
+.body-lg{font-size:clamp(1.06rem,1.75vw,1.35rem);line-height:1.5;color:var(--ink-2);letter-spacing:-.015em}
+.dark .body-lg{color:var(--on-dark-2)}
+.body{font-size:1rem;line-height:1.62;color:var(--ink-2)}
+.dark .body{color:var(--on-dark-2)}
+.fine{font-size:.815rem;line-height:1.55;color:var(--ink-3);letter-spacing:.002em}
+.dark .fine{color:var(--on-dark-2)}
+.mono-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.dark .mono-label{color:var(--on-dark-2)}
+.acc{color:var(--acc-txt)}
+.stack>*+*{margin-top:1em}
+.measure{max-width:34ch}
+.measure-w{max-width:52ch}
+
+/* sublinhado desenhado */
+.uline{position:relative;white-space:nowrap}
+/* o traço é o filamento; a sombra é a luz batendo no papel abaixo dele */
+.uline::after{
+  content:"";position:absolute;left:0;right:0;bottom:.06em;height:.13em;
+  background:var(--acc);opacity:1;transform-origin:left;border-radius:2px;
+  box-shadow:0 3px 14px rgba(var(--acc-rgb),.55);
+}
+.dark .uline::after{box-shadow:var(--glow-2)}
+/* o itálico serifado tem x-height menor e peso leve: o traço sobe e afina,
+   senão vira um bloco pesado embaixo de uma palavra delicada */
+.uline.serif::after{bottom:.14em;height:.085em}
+.js-reveal .uline::after{transform:scaleX(0);transition:transform 1s var(--ease) .5s}
+.js-reveal .in .uline::after{transform:scaleX(1)}
+/* o segundo traço entra depois do primeiro, senão os dois riscam juntos */
+.js-reveal .in .ln:nth-child(2) .uline::after{transition-delay:.72s}
+
+/* ============================================================
+   4. CABEÇALHO DE SEÇÃO NUMERADO
+   ============================================================ */
+.sec-head{
+  display:flex;align-items:baseline;gap:16px;
+  padding-bottom:14px;margin-bottom:clamp(32px,5vw,64px);
+  border-bottom:1px solid var(--rule);
+}
+.dark .sec-head{border-color:var(--rule-dark)}
+.sec-num{
+  font-size:.68rem;font-weight:800;letter-spacing:.14em;color:var(--acc-txt);
+  font-variant-numeric:tabular-nums;
+}
+.sec-head .mono-label{margin-right:auto}
+.sec-head .sec-aside{font-size:.7rem;color:var(--ink-3);letter-spacing:.04em;text-align:right}
+.dark .sec-head .sec-aside{color:var(--on-dark-2)}
+
+/* ============================================================
+   5. BOTÕES
+   ============================================================ */
+.cta{
+  --bg:var(--ink);--fg:var(--paper);
+  position:relative;display:inline-flex;align-items:center;justify-content:space-between;gap:28px;
+  background:var(--bg);color:var(--fg);
+  padding:22px 26px 22px 32px;border:0;border-radius:var(--r-sm);cursor:pointer;
+  font-weight:700;font-size:clamp(.95rem,1.5vw,1.06rem);letter-spacing:-.015em;
+  overflow:hidden;isolation:isolate;text-align:left;
+  box-shadow:var(--sh-md);
+  transition:color .4s var(--ease),box-shadow .4s var(--ease),transform .35s var(--ease);width:100%;
+}
+.cta::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--acc);
+  transform:translateY(101%);transition:transform .52s var(--ease);
+}
+.cta:hover::before{transform:translateY(0)}
+/* o preenchimento que sobe é verde, então o texto vira tinta escura */
+.cta:hover{color:var(--acc-on);transform:translateY(-1px);box-shadow:var(--halo-lg)}
+.cta__arrow{flex:0 0 auto;transition:transform .45s var(--ease)}
+.cta:hover .cta__arrow{transform:translateX(7px)}
+/* o principal já nasce aceso */
+.cta--acc{--bg:var(--acc);--fg:var(--acc-on);box-shadow:var(--halo)}
+.cta--acc::before{background:var(--ink)}
+.cta--acc:hover{color:var(--paper);box-shadow:var(--sh-md)}
+/* Dentro da faixa escura o secundário vira contorno e o principal continua
+   verde — `.dark .cta` tem especificidade maior que `.cta--acc`, então o
+   principal precisa ser repetido aqui ou some. */
+.dark .cta{--bg:transparent;--fg:var(--on-dark);box-shadow:inset 0 0 0 1px rgba(250,250,250,.3)}
+.dark .cta:hover{color:var(--acc-on);box-shadow:var(--glow-2)}
+.dark .cta--acc{--bg:var(--acc);--fg:var(--acc-on);box-shadow:var(--glow-2)}
+.dark .cta--acc:hover{color:var(--paper);box-shadow:var(--glow-3)}
+.cta--sm{padding:15px 20px 15px 24px;font-size:.9rem;gap:18px;width:auto}
+/* min() para o botão nunca ficar maior que a coluna que o contém */
+@media(min-width:600px){.cta{width:auto;min-width:min(340px,100%)}}
+
+.cta-note{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px}
+.cta-note span{font-size:.78rem;color:var(--ink-3);display:inline-flex;align-items:center;gap:7px;letter-spacing:.01em}
+.dark .cta-note span{color:var(--on-dark-2)}
+.cta-note b{color:var(--ink)}
+.dark .cta-note b{color:var(--on-dark)}
+
+/* ============================================================
+   6. NAV + PROGRESSO
+   ============================================================ */
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:9997;width:0;box-shadow:var(--halo);transition:width .1s linear}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:9990;
+  display:flex;align-items:center;gap:16px;
+  padding:14px var(--gut);
+  background:rgba(245,243,236,.82);backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid transparent;
+  transform:translateY(-102%);transition:transform .5s var(--ease),border-color .3s;
+}
+.nav.on{transform:translateY(0);border-bottom-color:var(--rule)}
+.nav__logo{font-weight:900;letter-spacing:-.05em;font-size:1.05rem;margin-right:auto}
+.nav__logo i{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acc-txt);padding:0 .1em}
+.nav__price{font-size:.82rem;color:var(--ink-3);display:none}
+@media(min-width:560px){.nav__price{display:block}}
+.nav__price b{color:var(--ink);font-weight:800}
+
+/* ============================================================
+   7. HERO
+   ============================================================ */
+.hero{padding:clamp(96px,15vh,180px) 0 clamp(48px,7vh,84px);position:relative}
+.hero__kicker{display:flex;align-items:center;gap:12px;margin-bottom:clamp(24px,4vw,40px)}
+.hero__kicker .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--acc);flex:0 0 auto;
+  box-shadow:var(--halo);animation:blip 2.4s ease-in-out infinite;
+}
+@keyframes blip{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
+
+/* revelação por linha */
+.ln{display:block;overflow:hidden;padding-bottom:.04em}
+.ln>i{display:block;font-style:normal}
+.js-reveal .ln>i{transform:translateY(105%);transition:transform 1.05s var(--ease)}
+.js-reveal .in .ln>i{transform:translateY(0)}
+.js-reveal .in .ln:nth-child(2)>i{transition-delay:.1s}
+.js-reveal .in .ln:nth-child(3)>i{transition-delay:.2s}
+.js-reveal .in .ln:nth-child(4)>i{transition-delay:.3s}
+
+.hero__meta{
+  display:grid;gap:22px;margin-top:clamp(34px,5vw,52px);
+  grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+  padding-top:24px;border-top:1px solid var(--rule);
+}
+.metric b{display:block;font-size:clamp(1.5rem,3.1vw,2.3rem);font-weight:900;letter-spacing:-.045em;line-height:1}
+.metric span{display:block;font-size:.76rem;color:var(--ink-3);margin-top:7px;line-height:1.35;letter-spacing:.01em}
+.metric--acc b{color:var(--acc-txt)}
+
+/* ============================================================
+   8. VÍDEO
+   ============================================================ */
+.vid{position:relative;background:var(--dark);overflow:hidden;border-radius:var(--r);box-shadow:var(--sh-card)}
+.vid__ratio{position:relative;aspect-ratio:16/9;width:100%}
+.vid__ratio iframe,.vid__ratio video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid__poster{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(20px,3.4vw,42px);cursor:pointer;border:0;width:100%;text-align:left;
+  background:
+    linear-gradient(to top,rgba(10,10,10,.9),transparent 42%),
+    radial-gradient(58% 62% at 50% 46%,rgba(var(--acc-rgb),.16),transparent 72%),
+    radial-gradient(120% 90% at 78% 22%,#2a2a2a,#0f0f0f 62%);
+  color:var(--on-dark);
+}
+.vid__poster::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--rule-dark) 1px,transparent 1px),linear-gradient(90deg,var(--rule-dark) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.5;
+}
+.vid__play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:clamp(74px,9vw,104px);aspect-ratio:1;border-radius:50%;
+  background:var(--acc);display:grid;place-items:center;
+  box-shadow:var(--glow-3);
+  transition:transform .5s var(--ease);
+}
+.vid__poster:hover .vid__play{transform:translate(-50%,-50%) scale(1.09)}
+/* A 360px o quadro 16/9 tem 180px de altura e o play (74px) invade a legenda.
+   Subir o play não resolve — falta altura. O quadro vira 4/3 no celular. */
+@media(max-width:560px){
+  .vid__ratio{aspect-ratio:4/3}
+  .vid__play{width:60px;top:38%}
+  .vid__cap h4{font-size:1.05rem;max-width:22ch}
+  .vid__cap .fine{display:none}
+}
+.vid__play::after{
+  content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(var(--acc-rgb),.4);
+  animation:ring 2.6s ease-out infinite;
+}
+@keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.32);opacity:0}}
+.vid__cap{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 24px}
+.vid__cap h4{max-width:26ch}
+.vid__cap .fine{color:var(--on-dark-2);margin-left:auto}
+.vid__tag{
+  position:absolute;top:clamp(18px,3vw,32px);left:clamp(20px,3.4vw,42px);
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+}
+.vid__tag .rec{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:var(--glow-1);animation:blip 1.6s ease-in-out infinite}
+
+/* ============================================================
+   9. MARQUEE
+   ============================================================ */
+.mq{
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:16px 0;overflow:hidden;background:var(--paper-2);
+  display:flex;gap:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+.mq__row{display:flex;flex:0 0 auto;gap:0;animation:slide 62s linear infinite;will-change:transform}
+.mq:hover .mq__row{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-100%)}}
+.mq__item{display:inline-flex;align-items:center;gap:12px;padding:0 26px;white-space:nowrap;font-size:.83rem;color:var(--ink-2)}
+.mq__item b{font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.mq__item::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--rule-2);opacity:1;margin-left:14px}
+
+/* ============================================================
+   10. GRÁTIS (grid editorial)
+   ============================================================ */
+.free{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);grid-template-columns:1fr}
+/* 3 células: vai de 1 para 3 colunas direto, para não sobrar caixa órfã */
+@media(min-width:820px){.free{grid-template-columns:repeat(3,1fr)}}
+.free__cell{background:var(--card);padding:clamp(24px,3vw,36px);position:relative;min-height:170px;display:flex;flex-direction:column}
+.free__n{font-size:.66rem;font-weight:800;letter-spacing:.18em;color:var(--ink-3)}
+.free__cell h4{margin:auto 0 8px}
+.free__cell .fine{margin:0}
+.free__cell .tick{position:absolute;top:clamp(24px,3vw,36px);right:clamp(24px,3vw,36px);color:var(--acc-txt)}
+
+/* ============================================================
+   11. LISTA DE DORES
+   ============================================================ */
+.prob{border-top:1px solid var(--rule)}
+.prob__row{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+  padding:clamp(20px,2.6vw,30px) 0;border-bottom:1px solid var(--rule);
+}
+@media(min-width:760px){.prob__row{grid-template-columns:64px 1fr auto;gap:28px;align-items:center}}
+.prob__n{font-size:.7rem;font-weight:800;color:var(--ink-3);letter-spacing:.1em;padding-top:.35em}
+@media(min-width:760px){.prob__n{padding-top:0}}
+.prob__txt{font-size:clamp(1.02rem,1.9vw,1.28rem);letter-spacing:-.02em;line-height:1.4}
+.prob__txt b{font-weight:700}
+/* estes ✕ marcam o que dá errado — não podem sair na cor de "aprovado" */
+.prob__x{color:var(--ink-3);flex:0 0 auto;display:none}
+@media(min-width:760px){.prob__x{display:block}}
+
+/* ============================================================
+   11a. COMPARAÇÃO / BARRAS
+   ============================================================ */
+.vs{display:grid;gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
+@media(min-width:820px){.vs{grid-template-columns:1fr 1fr}}
+.vs__side{background:var(--dark);padding:clamp(24px,3.2vw,42px);position:relative}
+/* o verde precisa ser uma camada SOBRE o preto — se o gradiente começar
+   translúcido, o papel claro da faixa atravessa e come a legenda */
+.vs__side--win{background:linear-gradient(165deg,rgba(var(--acc-rgb),.16),transparent 62%),var(--dark)}
+.vs__tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:.64rem;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;padding:6px 11px;border:1px solid currentColor;
+  color:var(--on-dark-2);margin-bottom:26px;
+}
+.vs__side--win .vs__tag{color:var(--acc-txt)}
+.vs__num{
+  display:flex;align-items:flex-start;gap:5px;font-weight:900;letter-spacing:-.055em;
+  line-height:.85;color:var(--on-dark);margin-bottom:6px;
+}
+.vs__num sup{font-size:clamp(.9rem,1.7vw,1.2rem);font-weight:800;margin-top:.4em;letter-spacing:-.02em}
+.vs__num em{font-style:normal;font-size:clamp(2.5rem,6.6vw,4rem);font-variant-numeric:tabular-nums}
+.vs__side--win .vs__num{color:var(--acc-txt)}
+.vs__cap{font-size:.84rem;color:var(--on-dark-2);line-height:1.4}
+.vs__bar{height:8px;background:rgba(244,242,237,.1);margin:22px 0 14px;overflow:hidden}
+/* padrão cheio: se o JS não rodar, a barra ainda aparece preenchida */
+.vs__fill{height:100%;width:var(--w,100%);background:var(--on-dark-2);transition:width 1.4s var(--ease) .25s}
+.vs__side--win .vs__fill{background:var(--acc)}
+.js-reveal .vs__fill{width:0}
+.js-reveal .vs.in .vs__fill{width:var(--w,100%)}
+.vs__hr{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  font-size:.82rem;color:var(--on-dark-2);padding-top:14px;border-top:1px solid var(--rule-dark);
+}
+.vs__hr b{color:var(--on-dark);font-weight:800;font-variant-numeric:tabular-nums;font-size:1rem}
+.vs__side--win .vs__hr b{color:var(--acc-txt)}
+
+/* tabela de comparação */
+.cmp{border:1px solid var(--rule);border-top:0}
+.cmp__row{
+  display:grid;grid-template-columns:1fr 88px 88px;align-items:center;
+  border-top:1px solid var(--rule);font-size:.9rem;
+}
+@media(min-width:640px){.cmp__row{grid-template-columns:1fr 1fr 1fr}}
+.cmp__row>*{padding:14px clamp(10px,1.6vw,20px)}
+.cmp__row--hd{background:var(--paper-2);font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.cmp__row--hd span:not(:first-child){text-align:center}
+.cmp__k{font-weight:600;letter-spacing:-.01em}
+.cmp__a,.cmp__b{text-align:center;font-variant-numeric:tabular-nums;border-left:1px solid var(--rule)}
+.cmp__a{color:var(--ink-3)}
+.cmp__b{font-weight:800;background:rgba(var(--acc-rgb),.05)}
+.cmp__b--acc{color:var(--acc-txt)}
+.cmp svg{display:inline-block;vertical-align:middle}
+.cmp__note{font-size:.78rem;color:var(--ink-3);padding:14px clamp(10px,1.6vw,20px);border-top:1px solid var(--rule);line-height:1.5;max-width:78ch}
+
+/* ============================================================
+   11b. CALCULADORA
+   ============================================================ */
+.calc{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:900px){.calc{grid-template-columns:1fr 1fr}}
+.calc__side{background:var(--card);padding:clamp(24px,3.2vw,40px)}
+.calc__side--out{background:var(--dark);color:var(--on-dark)}
+.calc__hd{display:flex;align-items:center;gap:12px;padding-bottom:16px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.calc__side--out .calc__hd{border-color:var(--rule-dark)}
+
+.fld{margin-bottom:18px}
+.fld:last-child{margin-bottom:0}
+.fld__top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.fld__lbl{font-size:.82rem;font-weight:700;letter-spacing:-.01em}
+.fld__val{font-size:1.02rem;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--acc-txt)}
+
+/* 44px de alvo (era 22) e touch-action:pan-y — sem ele um arraste com
+   qualquer inclinação vertical vira scroll e o slider parece quebrado. */
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:44px;
+  background:transparent;cursor:pointer;display:block;margin:0;
+  touch-action:pan-y;
+}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--rule-2);border-radius:0}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--acc);border:3px solid var(--card);margin-top:-9px;
+  box-shadow:0 0 0 1px var(--acc);transition:transform .18s var(--ease);
+}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
+input[type=range]::-moz-range-track{height:2px;background:var(--rule-2)}
+input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;border-radius:50%;background:var(--acc);
+  border:3px solid var(--card);box-shadow:0 0 0 1px var(--acc);
+}
+input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ink);outline-offset:2px}
+.fld__scale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--ink-3);margin-top:4px}
+
+.seg{display:flex;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.seg button{
+  flex:1;background:var(--card);border:0;padding:13px 8px;cursor:pointer;
+  font-size:.88rem;font-weight:700;color:var(--ink-2);letter-spacing:-.01em;
+  transition:background .25s,color .25s;
+}
+.seg button[aria-pressed=true]{background:var(--acc);color:var(--acc-on);box-shadow:var(--halo)}
+
+.calc__big{
+  display:flex;align-items:flex-start;gap:5px;font-weight:900;letter-spacing:-.055em;
+  line-height:.85;color:var(--on-dark);margin:6px 0 4px;
+}
+.calc__big sup{font-size:clamp(.95rem,1.9vw,1.35rem);font-weight:800;margin-top:.36em;letter-spacing:-.02em}
+.calc__big em{font-style:normal;font-size:clamp(2.6rem,7.4vw,4.2rem);font-variant-numeric:tabular-nums}
+.calc__row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--rule-dark);font-size:.88rem;color:var(--on-dark-2);
+}
+.calc__row:last-of-type{border-bottom:0}
+.calc__row b{color:var(--on-dark);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calc__delta{
+  margin-top:20px;padding:18px;border:1px solid var(--acc);background:rgba(var(--acc-rgb),.11);
+}
+.calc__delta .mono-label{color:var(--acc-txt);display:block;margin-bottom:7px}
+.calc__delta p{font-size:.9rem;line-height:1.5;color:var(--on-dark-2)}
+.calc__delta b{color:var(--on-dark)}
+.calc__delta .plus{font-size:clamp(1.3rem,3vw,1.75rem);font-weight:900;letter-spacing:-.04em;color:var(--acc-txt);font-variant-numeric:tabular-nums;display:block;margin-bottom:6px}
+
+/* ============================================================
+   12. PASSOS FIXOS
+   ============================================================ */
+.steps{display:grid;gap:clamp(32px,4vw,64px)}
+@media(min-width:960px){.steps{grid-template-columns:.85fr 1.15fr;align-items:start}}
+.steps__sticky{position:sticky;top:110px;display:none}
+@media(min-width:960px){.steps__sticky{display:block}}
+/* contador de posição, não recompensa: fica abaixo da H1 e sem cor de marca */
+.steps__big{
+  font-size:clamp(4rem,9vw,7rem);font-weight:900;line-height:.8;letter-spacing:-.07em;
+  color:var(--ink);opacity:.12;font-variant-numeric:tabular-nums;
+}
+.steps__big span{display:inline-block;transition:opacity .35s var(--ease),transform .45s var(--ease)}
+.steps__list{border-top:1px solid var(--rule)}
+.step{padding:clamp(26px,3.4vw,40px) 0;border-bottom:1px solid var(--rule);transition:opacity .45s var(--ease)}
+@media(min-width:960px){.step{opacity:.36}.step.act{opacity:1}}
+.step__top{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+.step__n{font-size:.7rem;font-weight:800;color:var(--acc-txt);letter-spacing:.14em}
+.step__tag{margin-left:auto;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule);padding:5px 10px}
+
+/* ============================================================
+   13. STATS DA EMPRESA
+   ============================================================ */
+.stats{display:grid;gap:1px;background:var(--rule-dark);border:1px solid var(--rule-dark);grid-template-columns:1fr 1fr}
+@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stats__cell{background:var(--dark);padding:clamp(24px,3vw,38px)}
+.stats__cell b{display:block;font-size:clamp(1.7rem,4vw,3rem);font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--on-dark)}
+.stats__cell span{display:block;font-size:.76rem;color:var(--on-dark-2);margin-top:12px;line-height:1.4}
+
+/* ============================================================
+   14. PROVA SOCIAL
+   ============================================================ */
+/* é uma ressalva, não um estado de sucesso: neutra, nunca verde */
+.warn{
+  border:1px solid var(--rule-2);background:var(--paper-2);padding:clamp(18px,2.4vw,26px);
+  display:grid;gap:12px;grid-template-columns:auto 1fr;align-items:start;
+}
+.warn svg{color:var(--ink-3);flex:0 0 auto;margin-top:3px}
+.warn p{font-size:.86rem;line-height:1.55;color:var(--ink)}
+.warn b{font-weight:700}
+
+.tsts{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:700px){.tsts{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.tsts{grid-template-columns:repeat(3,1fr)}}
+.tst{background:var(--card);padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:18px;min-height:262px}
+.tst__q{font-family:var(--serif);font-style:italic;font-size:clamp(1.08rem,1.9vw,1.3rem);line-height:1.34;letter-spacing:-.02em}
+.tst__who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid var(--rule)}
+.tst__av{width:38px;height:38px;flex:0 0 auto;background:var(--paper-3);display:grid;place-items:center;font-size:.74rem;font-weight:800;color:var(--ink-3)}
+.tst__who b{display:block;font-size:.88rem;font-weight:700}
+.tst__who span{display:block;font-size:.75rem;color:var(--ink-3)}
+.tst__st{color:var(--acc-txt);font-size:.8rem;letter-spacing:2px}
+
+.slots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:820px){.slots{grid-template-columns:repeat(4,1fr)}}
+.slot{
+  aspect-ratio:4/5;border:1px dashed var(--rule-2);background:var(--paper-2);
+  display:flex;flex-direction:column;justify-content:space-between;padding:18px;
+}
+.slot .mono-label{font-size:.62rem}
+.slot p{font-size:.78rem;line-height:1.45;color:var(--ink-2)}
+.slot p b{color:var(--acc-txt)}
+
+/* ============================================================
+   15. MÓDULOS
+   ============================================================ */
+.mods{border-top:1px solid var(--rule)}
+.mod{border-bottom:1px solid var(--rule)}
+.mod__btn{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  padding:clamp(20px,2.6vw,28px) 0;color:inherit;
+}
+@media(min-width:760px){.mod__btn{grid-template-columns:78px 1fr auto;gap:28px}}
+.mod__n{font-size:.7rem;font-weight:800;color:var(--acc-txt);letter-spacing:.12em}
+.mod__t{font-size:clamp(1.05rem,2.1vw,1.5rem);font-weight:800;letter-spacing:-.032em;line-height:1.22}
+.mod__pm{position:relative;width:19px;height:19px;flex:0 0 auto;color:var(--ink-3);transition:transform .5s var(--ease),color .3s}
+.mod__pm::before,.mod__pm::after{content:"";position:absolute;background:currentColor;left:50%;top:50%}
+.mod__pm::before{width:19px;height:1.5px;transform:translate(-50%,-50%)}
+.mod__pm::after{width:1.5px;height:19px;transform:translate(-50%,-50%);transition:transform .5s var(--ease)}
+.mod.open .mod__pm{transform:rotate(90deg);color:var(--acc-txt)}
+.mod.open .mod__pm::after{transform:translate(-50%,-50%) scaleY(0)}
+.mod__body{overflow:hidden;height:0;transition:height .55s var(--ease)}
+.mod__inner{padding:0 0 clamp(24px,3vw,34px)}
+@media(min-width:760px){.mod__inner{padding-left:106px;max-width:74ch}}
+.mod__inner ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+.mod__inner li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:.96rem;line-height:1.5;color:var(--ink-2)}
+.mod__inner li::before{content:"";width:14px;height:1px;background:var(--rule-2);margin-top:.72em}
+.mod__inner li b{color:var(--ink);font-weight:700}
+
+/* ============================================================
+   16. TRANSPARÊNCIA
+   ============================================================ */
+.tp{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:800px){.tp{grid-template-columns:1fr 1fr}}
+.tp__col{background:var(--card);padding:clamp(26px,3.4vw,44px)}
+.tp__col--paid{background:var(--paper-2)}
+.tp__hd{display:flex;align-items:center;gap:12px;padding-bottom:18px;margin-bottom:6px;border-bottom:1px solid var(--rule)}
+.tp__pill{font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:6px 11px;border:1px solid currentColor}
+.tp__pill--free{color:var(--acc-txt)}
+.tp__pill--paid{color:var(--ink-3)}
+.tp__col ul{margin:0;padding:0;list-style:none}
+.tp__col li{display:grid;grid-template-columns:auto 1fr;gap:13px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:.96rem;line-height:1.5}
+.tp__col li:last-child{border-bottom:0}
+.tp__col li svg{margin-top:4px;flex:0 0 auto}
+.tp__col li b{font-weight:700}
+
+/* ============================================================
+   17. OFERTA
+   ============================================================ */
+.offer{display:grid;gap:clamp(34px,5vw,72px)}
+@media(min-width:980px){.offer{grid-template-columns:1.05fr .95fr;align-items:start}}
+.inc{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule-dark)}
+.inc li{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;
+  padding:15px 0;border-bottom:1px solid var(--rule-dark);font-size:.95rem;line-height:1.45;
+}
+.inc li svg{color:var(--acc-txt);margin-top:5px;align-self:start}
+.inc li b{font-weight:700;color:var(--on-dark)}
+.inc li>span:nth-child(2){color:var(--on-dark-2)}
+.inc__v{font-size:.78rem;color:var(--on-dark-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.inc__v s{opacity:.65}
+
+/* a caixa de preço é o ponto mais aceso da página */
+.pricebox{
+  border:1px solid rgba(var(--acc-rgb),.3);padding:clamp(26px,3.4vw,42px);
+  background:linear-gradient(168deg,rgba(var(--acc-rgb),.08),var(--dark-2) 58%);
+  position:relative;box-shadow:0 0 50px rgba(var(--acc-rgb),.14);
+}
+.pricebox .strike{font-size:.9rem;color:var(--on-dark-2)}
+.pricebox .strike s{text-decoration-color:var(--acc-txt);text-decoration-thickness:1.5px}
+
+/* selo de desconto */
+.off{
+  position:absolute;top:0;right:clamp(26px,3.4vw,42px);transform:translateY(-50%);
+  background:var(--acc);color:var(--acc-on);padding:9px 15px;
+  font-size:.74rem;font-weight:900;letter-spacing:.04em;line-height:1;
+  border-radius:999px;box-shadow:var(--halo);
+}
+/* linha "de / por" */
+.deal{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.deal__de{font-size:1.05rem;color:var(--on-dark-2)}
+.deal__de s{text-decoration-color:var(--acc-txt);text-decoration-thickness:2px}
+.deal__tag{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc-txt)}
+
+/* equivalência com 1 hora gravada */
+.hourbox{
+  margin-top:22px;padding:20px;border:1px solid var(--acc);background:rgba(var(--acc-rgb),.11);
+}
+.hourbox__eq{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid rgba(var(--acc-rgb),.3);
+}
+.hourbox__cell{display:flex;flex-direction:column;gap:3px}
+.hourbox__cell b{font-size:1.22rem;font-weight:900;letter-spacing:-.03em;color:var(--on-dark);line-height:1}
+.hourbox__cell span{font-size:.72rem;color:var(--on-dark-2);letter-spacing:.02em}
+.hourbox__is{font-size:1.3rem;font-weight:300;color:var(--acc-txt);line-height:1}
+.hourbox p{font-size:.88rem;line-height:1.5;color:var(--on-dark-2)}
+.hourbox p b{color:var(--acc-txt)}
+.price{
+  display:flex;align-items:flex-start;gap:6px;margin:14px 0 6px;
+  font-weight:900;letter-spacing:-.06em;line-height:.82;color:var(--on-dark);
+}
+.price sup{font-size:clamp(1.1rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.02em;margin-top:.32em}
+.price em{font-style:normal;font-size:clamp(3.6rem,11vw,6.4rem)}
+.pricebox .eq{
+  margin-top:20px;padding-top:20px;border-top:1px solid var(--rule-dark);
+  font-size:.88rem;color:var(--on-dark-2);line-height:1.5;
+}
+.pricebox .eq b{color:var(--acc-txt)}
+.grt{display:grid;grid-template-columns:auto 1fr;gap:14px;margin-top:22px;padding:20px;border:1px solid var(--rule-dark);background:var(--dark-3)}
+.grt svg{color:var(--acc-txt);flex:0 0 auto;margin-top:2px}
+.grt b{display:block;font-size:.92rem;color:var(--on-dark);margin-bottom:4px;font-weight:700}
+.grt p{font-size:.84rem;color:var(--on-dark-2);line-height:1.5}
+
+/* ============================================================
+   18. FAQ
+   ============================================================ */
+.faq{border-top:1px solid var(--rule)}
+.faq__i{border-bottom:1px solid var(--rule)}
+.faq__q{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;color:inherit;
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+  padding:clamp(20px,2.4vw,26px) 0;
+  font-size:clamp(1rem,1.75vw,1.16rem);font-weight:700;letter-spacing:-.024em;line-height:1.3;
+}
+.faq__i.open .faq__q{color:var(--acc-txt)}
+.faq__a{overflow:hidden;height:0;transition:height .5s var(--ease)}
+.faq__a-in{padding:0 0 clamp(22px,2.6vw,30px);max-width:70ch}
+.faq__a-in p+p{margin-top:.85em}
+.faq__a-in ul{margin:.85em 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.faq__a-in li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:.95rem;color:var(--ink-2);line-height:1.5}
+.faq__a-in li::before{content:"";width:14px;height:1px;background:var(--rule-2);margin-top:.72em}
+
+/* ============================================================
+   19. CTA FINAL
+   ============================================================ */
+.final{position:relative;overflow:hidden}
+.final__bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--rule-dark) 1px,transparent 1px),linear-gradient(90deg,var(--rule-dark) 1px,transparent 1px);
+  background-size:82px 82px;opacity:.55;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000,transparent);
+          mask-image:radial-gradient(80% 70% at 50% 45%,#000,transparent);
+}
+.final__in{position:relative}
+
+/* ============================================================
+   20. BARRA MOBILE
+   ============================================================ */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:9992;
+  display:flex;align-items:center;gap:14px;
+  padding:11px 16px;background:var(--ink);color:var(--paper);
+  transform:translateY(105%);transition:transform .45s var(--ease);
+}
+.dock.on{transform:translateY(0)}
+.dock__t{font-size:.74rem;line-height:1.25;color:var(--on-dark-2);margin-right:auto}
+.dock__t b{display:block;color:var(--paper);font-size:.94rem;font-weight:800;letter-spacing:-.02em}
+.dock .cta{width:auto;min-width:0;padding:14px 18px;font-size:.86rem;gap:12px;--bg:var(--acc);--fg:var(--acc-on);box-shadow:var(--glow-2)}
+.dock .cta::before{background:var(--card)}
+.dock .cta:hover{color:var(--ink)}
+@media(min-width:900px){.dock{display:none}}
+body.dockpad{padding-bottom:0}
+@media(max-width:899px){body.dockpad{padding-bottom:74px}}
+
+/* ============================================================
+   21. RODAPÉ
+   ============================================================ */
+footer{background:var(--dark);color:var(--on-dark-2);padding:clamp(52px,7vh,88px) 0 44px;font-size:.82rem}
+.legal{display:grid;gap:22px;border-top:1px solid var(--rule-dark);padding-top:30px;margin-top:34px}
+@media(min-width:860px){.legal{grid-template-columns:repeat(2,1fr);gap:22px 48px}}
+.legal p{line-height:1.6}
+.legal b{color:var(--on-dark);font-weight:700}
+.foot__top{display:grid;gap:26px}
+@media(min-width:700px){.foot__top{grid-template-columns:1fr auto;align-items:end}}
+.foot__logo{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:900;letter-spacing:-.055em;line-height:.85;color:var(--on-dark)}
+.foot__logo i{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acc-txt)}
+.foot__links{display:flex;flex-wrap:wrap;gap:0 22px}
+.foot__links a{color:var(--on-dark-2);border-bottom:1px solid transparent;transition:color .3s,border-color .3s;display:inline-block;padding:11px 0}
+.foot__links a:hover{color:var(--acc-txt);border-bottom-color:var(--acc-txt)}
+.foot__end{margin-top:30px;padding-top:22px;border-top:1px solid var(--rule-dark);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:.76rem}
+
+/* ============================================================
+   21b. PAINÉIS — raio e sombra
+   As grades continuam com fio de 1px por dentro; o arredondamento
+   acontece só no contorno, via overflow.
+   ============================================================ */
+.free,.tsts,.stats,.vs,.calc,.tp,.cmp{
+  border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-card);
+}
+.slot,.warn,.grt,.hourbox,.calc__delta,.pricebox{border-radius:var(--r-sm)}
+.seg{border-radius:var(--r-sm);overflow:hidden}
+.vs__tag,.tp__pill,.step__tag{border-radius:999px}
+/* no escuro a profundidade vem de um fio de luz, não de sombra */
+.dark .vs,.dark .stats,.dark .cmp{box-shadow:inset 0 1px 0 rgba(250,250,250,.07)}
+
+/* ============================================================
+   22. REVELAÇÃO / CURSOR / A11Y
+   ============================================================ */
+.js-reveal .rv{opacity:0;transform:translateY(30px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.js-reveal .rv.in{opacity:1;transform:none}
+.js-reveal .rv-d1{transition-delay:.08s}
+.js-reveal .rv-d2{transition-delay:.16s}
+.js-reveal .rv-d3{transition-delay:.24s}
+
+.cursor{
+  /* fio escuro em volta: assim o verde lê tanto no papel quanto na faixa preta */
+  position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;background:var(--acc);
+  pointer-events:none;z-index:9999;box-shadow:0 0 0 1px rgba(20,20,20,.28),var(--halo);
+  transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s;
+  opacity:0;
+}
+.cursor.on{opacity:1}
+.cursor.big{width:46px;height:46px}
+@media(hover:none),(pointer:coarse){.cursor{display:none!important}}
+
+/* o verde vivo não tem contraste suficiente para anel de foco no claro */
+:focus-visible{outline:2px solid var(--acc-2);outline-offset:3px}
+.dark :focus-visible{outline-color:var(--acc)}
+
+/* ============================================================
+   22b. TOQUE
+   No iOS/Android o :hover fica RETIDO depois do toque. Sem isto,
+   encostar no marquee durante um scroll congela ele para sempre, e
+   o botão de compra volta invertido depois de abrir o checkout em
+   outra aba. Cada estado de hover é desfeito e trocado por :active.
+   ============================================================ */
+@media (hover:none),(pointer:coarse){
+  .mq:hover .mq__row{animation-play-state:running}
+  .cta:hover{color:var(--fg);transform:none;box-shadow:var(--sh-md)}
+  .cta:hover::before{transform:translateY(101%)}
+  .cta:hover .cta__arrow{transform:none}
+  .cta--acc:hover{color:var(--acc-on);box-shadow:var(--halo)}
+  .dark .cta:hover{color:var(--on-dark);box-shadow:inset 0 0 0 1px rgba(250,250,250,.3)}
+  .dark .cta--acc:hover{color:var(--acc-on);box-shadow:var(--glow-2)}
+  .vid__poster:hover .vid__play{transform:translate(-50%,-50%)}
+  input[type=range]:hover::-webkit-slider-thumb{transform:none}
+  .foot__links a:hover{color:var(--on-dark-2);border-bottom-color:transparent}
+  /* o retorno tátil vem do :active, que não fica preso */
+  .cta:active{transform:scale(.985)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .js-reveal .rv{opacity:1;transform:none}
+  .js-reveal .ln>i{transform:none}
+  .js-reveal .uline::after{transform:scaleX(1)}
+  .cursor{display:none}
+}
+</style>
+</head>
+<body class="dockpad">
+
+<div class="prog" id="prog"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav class="nav" id="nav">
+  <span class="nav__logo">Filmou<i>/</i>Ganhou</span>
+  <span class="nav__price">Acesso completo · <b>R$&nbsp;<span data-cfg="price">25</span></b></span>
+  <a class="cta cta--sm cta--acc" data-checkout href="#oferta">
+    <span>Quero começar</span>
+    <svg class="cta__arrow" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+  </a>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+  <div class="shell">
+    <div class="cols cols--12">
+      <div class="c-12 rv">
+        <div class="hero__kicker">
+          <span class="dot"></span>
+          <span class="mono-label">Renda em casa · sem vender, sem aparecer</span>
+        </div>
+      </div>
+
+      <div class="c-8">
+        <h1 class="display rv">
+          <span class="ln"><i>Ser <span class="uline">pago</span> para fazer</i></span>
+          <span class="ln"><i>o que você <span class="serif uline">já faz</span></i></span>
+          <span class="ln"><i>dentro de casa.</i></span>
+        </h1>
+      </div>
+
+      <div class="end-4 rv rv-d2" style="display:flex;align-items:flex-end">
+        <p class="pull">
+          Grave a sua rotina pelo celular.<br>Receba por hora, no Pix.
+        </p>
+      </div>
+
+      <div class="c-12">
+        <div class="hero__meta rv rv-d1">
+          <div class="metric metric--acc"><b>R$ 25<span style="font-size:.42em;letter-spacing:-.02em">/h</span></b><span>por hora aprovada</span></div>
+          <div class="metric"><b>R$ 0</b><span>para começar</span></div>
+          <div class="metric"><b>Pix</b><span>recebimento direto</span></div>
+          <div class="metric"><b>Zero</b><span>deslocamento</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ VÍDEO ═══════════════════ -->
+<div class="shell rv">
+  <div class="vid">
+    <div class="vid__ratio" id="vidRatio">
+      <!--
+        ⬅️ TROCAR O VÍDEO: preencha "videoEmbed" no bloco CONFIG (fim do arquivo).
+           Aceita ID do YouTube, link do YouTube/Vimeo ou arquivo .mp4.
+           Para VSL (Panda, Vturb, Converteai) use "videoEmbedHtml".
+      -->
+      <button class="vid__poster" id="vidPoster" type="button" aria-label="Assistir a apresentação">
+        <span class="vid__tag"><span class="rec"></span> Assista antes de tudo</span>
+        <span class="vid__play">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#141414"><path d="M7 4.5v15l13-7.5z"/></svg>
+        </span>
+        <span class="vid__cap">
+          <h4 class="h3" data-cfg="videoTitle">Como eu ganho em casa gravando a minha rotina</h4>
+          <span class="fine">06:12 · som ligado</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="band--tight" style="padding-bottom:0">
+  <div class="shell">
+    <div style="max-width:400px">
+      <a class="cta cta--acc" data-checkout href="#oferta">
+        <span>Quero o método completo</span>
+        <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+      </a>
+      <div class="cta-note">
+        <span><b>Acesso imediato</b></span><span>Pix ou cartão</span><span>7 dias de garantia</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MARQUEE ═══════════════════ -->
+<div class="mq" style="margin-top:clamp(48px,7vh,90px)" aria-hidden="true">
+  <div class="mq__row" id="mqRow"></div>
+  <div class="mq__row" id="mqRow2"></div>
+</div>
+
+<!-- ═══════════════════ 00 · A COMPARAÇÃO ═══════════════════ -->
+<section class="band">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">00</span>
+      <span class="mono-label">A comparação</span>
+      <span class="sec-aside">220 horas no mês · a carga da CLT</span>
+    </div>
+
+    <h2 class="h2 rv" style="max-width:24ch;margin-bottom:clamp(30px,4vw,48px)">
+      Mesma carga horária.<br><span class="serif">Outro</span> patamar.
+    </h2>
+
+    <div class="vs rv">
+      <div class="vs__side">
+        <span class="vs__tag">Salário mínimo · CLT</span>
+        <div class="vs__num"><sup>R$</sup><em data-count="1621">1.621</em></div>
+        <p class="vs__cap">por mês, 220 horas trabalhadas</p>
+        <div class="vs__bar"><div class="vs__fill" style="--w:42%"></div></div>
+        <div class="vs__hr"><span>Por hora</span><b>R$ 7,37</b></div>
+      </div>
+
+      <div class="vs__side vs__side--win">
+        <span class="vs__tag">Gravando em casa</span>
+        <div class="vs__num"><sup>R$</sup><em data-count="3850">3.850</em></div>
+        <p class="vs__cap">as mesmas 220 horas, a 70% de aprovação</p>
+        <div class="vs__bar"><div class="vs__fill" style="--w:100%"></div></div>
+        <div class="vs__hr"><span>Por hora</span><b>R$ 25,00</b></div>
+      </div>
+    </div>
+
+    <div class="cmp rv rv-d1" style="margin-top:26px;border-top:1px solid var(--rule)">
+      <div class="cmp__row cmp__row--hd">
+        <span>Comparando</span><span>CLT mínimo</span><span>Em casa</span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Carga no mês</span>
+        <span class="cmp__a">220h</span>
+        <span class="cmp__b">220h</span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Valor da hora</span>
+        <span class="cmp__a">R$ 7,37</span>
+        <span class="cmp__b cmp__b--acc">R$ 25,00</span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Deslocamento diário</span>
+        <span class="cmp__a">1h a 3h</span>
+        <span class="cmp__b cmp__b--acc">nenhum</span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Chefe e ponto batido</span>
+        <span class="cmp__a">sim</span>
+        <span class="cmp__b cmp__b--acc">não</span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Escolhe o horário</span>
+        <span class="cmp__a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+        <span class="cmp__b cmp__b--acc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">13º, férias e FGTS</span>
+        <span class="cmp__a" style="color:var(--ink)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <span class="cmp__b" style="color:var(--ink-3)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="cmp__row">
+        <span class="cmp__k">Valor garantido no fim do mês</span>
+        <span class="cmp__a" style="color:var(--ink)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <span class="cmp__b" style="color:var(--ink-3)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <p class="cmp__note">
+        <b style="color:var(--ink)">Sendo justo com os dois lados:</b> a CLT garante o valor,
+        o 13º, as férias e o FGTS — gravando em casa, não. Em troca, você não tem chefe,
+        não gasta com transporte e a hora vale <b style="color:var(--acc-txt)">3,4 vezes mais</b>.
+        Salário mínimo de 2026: R$ 1.621 (Decreto 12.797/2025), base de 220h/mês.
+        Simulação, não promessa de renda.
+      </p>
+    </div>
+
+    <div style="margin-top:clamp(28px,3.5vw,44px);max-width:400px" class="rv">
+      <a class="cta cta--acc" data-checkout href="#oferta">
+        <span>Quero essa hora de R$ 25</span>
+        <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 01 · POR QUE PAGAM ═══════════════════ -->
+<section class="band" style="background:var(--paper-2)">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">01</span>
+      <span class="mono-label">Por que pagam</span>
+      <span class="sec-aside">A corrida da robótica</span>
+    </div>
+
+    <div class="cols cols--12" style="margin-bottom:clamp(30px,4vw,48px)">
+      <div class="c-7">
+        <h2 class="h2 rv" style="max-width:26ch">Robô nenhum aprende sem <span class="serif">assistir</span> gente de verdade.</h2>
+      </div>
+      <div class="end-4 rv rv-d1" style="display:flex;align-items:flex-end">
+        <p class="body measure">
+          Esse vídeo não existe na internet. Alguém precisa gravar — e é pago para isso.
+        </p>
+      </div>
+    </div>
+
+    <div class="free rv rv-d1">
+      <div class="free__cell">
+        <span class="free__n">01</span>
+        <span class="tick"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h4 class="h4">Nada para investir</h4>
+        <p class="fine">Sem taxa, sem equipamento.</p>
+      </div>
+      <div class="free__cell">
+        <span class="free__n">02</span>
+        <span class="tick"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h4 class="h4">Kit grátis em casa</h4>
+        <p class="fine">Chega sem custo. Grava com o seu celular.</p>
+      </div>
+      <div class="free__cell">
+        <span class="free__n">03</span>
+        <span class="tick"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h4 class="h4">Recebimento no Pix</h4>
+        <p class="fine">Sai direto na sua conta.</p>
+      </div>
+    </div>
+
+    <p class="fine rv" style="margin-top:22px;max-width:80ch">
+      Quem paga são <b style="color:var(--ink)">empresas que treinam inteligência artificial</b> e
+      precisam de vídeo de rotina real — esse material não existe pronto na internet.
+      Você não paga taxa de adesão, não vende nada e não precisa indicar ninguém.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 02 · O QUE DECIDE O SEU VALOR ═══════════════════ -->
+<section class="band">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">02</span>
+      <span class="mono-label">O que decide o seu valor</span>
+      <span class="sec-aside">Taxa de aprovação</span>
+    </div>
+
+    <div class="cols cols--12" style="margin-bottom:clamp(28px,3.5vw,44px)">
+      <div class="c-7">
+        <h2 class="h2 rv" style="max-width:26ch">
+          Duas pessoas gravam <span class="acc">8 horas</span>.<br>
+          Uma recebe quase o <span class="serif">dobro</span>.
+        </h2>
+      </div>
+      <div class="end-4 rv rv-d1" style="display:flex;align-items:flex-end">
+        <p class="body measure">
+          Paga-se por hora <b>aprovada</b>. O que não passa na revisão, não paga.
+        </p>
+      </div>
+    </div>
+
+    <div class="prob rv rv-d1" style="margin-bottom:clamp(30px,4vw,48px)">
+      <div class="prob__row">
+        <span class="prob__n">01</span>
+        <p class="prob__txt">Metade dos vídeos volta <b>rejeitada</b>.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="prob__row">
+        <span class="prob__n">02</span>
+        <p class="prob__txt">Escolhe <b>as tarefas erradas</b> e ganha menos pelo mesmo tempo.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="prob__row">
+        <span class="prob__n">03</span>
+        <p class="prob__txt">Deixa <b>bônus na mesa</b> sem saber que existiam.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="prob__row">
+        <span class="prob__n">04</span>
+        <p class="prob__txt">Repete <b>o erro que rejeita na hora</b> em todos os vídeos.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="prob__row">
+        <span class="prob__n">05</span>
+        <p class="prob__txt">Filma <b>o que nunca deveria</b> e perde o vídeo inteiro.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+      <div class="prob__row">
+        <span class="prob__n">06</span>
+        <p class="prob__txt">Sem rotina, <b>desiste na primeira semana</b>.</p>
+        <span class="prob__x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </div>
+    </div>
+
+    <!-- ─────────── CALCULADORA ─────────── -->
+    <div class="calc rv rv-d1">
+      <div class="calc__side">
+        <div class="calc__hd">
+          <span class="mono-label">Simule o seu mês</span>
+        </div>
+
+        <div class="fld">
+          <div class="fld__top">
+            <label class="fld__lbl" for="cHoras">Horas por dia</label>
+            <span class="fld__val" id="vHoras">8h</span>
+          </div>
+          <input type="range" id="cHoras" min="1" max="8" step="1" value="8">
+          <div class="fld__scale"><span>1h</span><span>8h</span></div>
+        </div>
+
+        <div class="fld">
+          <div class="fld__top">
+            <span class="fld__lbl">Dias por semana</span>
+            <span class="fld__val" id="vDias">5 dias</span>
+          </div>
+          <div class="seg" id="cDias" role="group" aria-label="Dias por semana">
+            <button type="button" data-d="3" aria-pressed="false">3</button>
+            <button type="button" data-d="5" aria-pressed="true">5</button>
+            <button type="button" data-d="6" aria-pressed="false">6</button>
+            <button type="button" data-d="7" aria-pressed="false">7</button>
+          </div>
+        </div>
+
+        <div class="fld">
+          <div class="fld__top">
+            <label class="fld__lbl" for="cAprov">Taxa de aprovação</label>
+            <span class="fld__val" id="vAprov">70%</span>
+          </div>
+          <input type="range" id="cAprov" min="40" max="95" step="5" value="70">
+          <div class="fld__scale"><span>40% — sem método</span><span>95%</span></div>
+        </div>
+      </div>
+
+      <div class="calc__side calc__side--out">
+        <div class="calc__hd">
+          <span class="mono-label">Estimativa mensal</span>
+        </div>
+
+        <div class="calc__big"><sup>R$</sup><em id="oTotal">3.031</em></div>
+        <p class="fine" style="margin-bottom:22px">no ritmo que você escolheu</p>
+
+        <div class="calc__row"><span>Horas gravadas</span><b id="oGravadas">173h</b></div>
+        <div class="calc__row"><span>Horas aprovadas</span><b id="oAprovadas">121h</b></div>
+        <div class="calc__row"><span>Por hora aprovada</span><b>R$ 25</b></div>
+
+        <div class="calc__delta">
+          <span class="mono-label">O que o método muda</span>
+          <span class="plus" id="oDelta">+ R$ 866 / mês</span>
+          <p>Levando a aprovação de <b id="oDe">70%</b> para <b>90%</b>, nas mesmas horas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols cols--12" style="margin-top:clamp(24px,3vw,36px)">
+      <div class="c-7 rv">
+        <p class="fine">
+          Horas × dias × 4,33 semanas × aprovação × R$ 25.
+          <b style="color:var(--ink)">Simulação, não promessa de renda.</b>
+          Depende da disponibilidade de tarefas na sua região e dos critérios da empresa.
+          Volume alto de horas não é garantido.
+        </p>
+      </div>
+      <div class="end-4 rv rv-d1" style="display:flex;align-items:flex-end">
+        <a class="cta" data-checkout href="#oferta">
+          <span>Quero subir minha aprovação</span>
+          <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 03 · COMO FUNCIONA ═══════════════════ -->
+<section class="band" style="background:var(--paper-2)">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">03</span>
+      <span class="mono-label">Como funciona</span>
+      <span class="sec-aside">Quatro passos</span>
+    </div>
+
+    <h2 class="h2 rv" style="margin-bottom:clamp(32px,4.5vw,56px);max-width:20ch">Filmou. Ganhou. <span class="serif">Recebeu.</span></h2>
+
+    <div class="steps">
+      <div class="steps__sticky">
+        <div class="steps__big"><span id="stepBig">01</span></div>
+        <p class="mono-label" style="margin-top:20px" id="stepLbl">Entrada</p>
+      </div>
+
+      <div class="steps__list" id="stepList">
+        <article class="step act rv" data-n="01" data-lbl="Entrada">
+          <div class="step__top"><span class="step__n">01</span><span class="step__tag">Dia 1</span></div>
+          <h3 class="h3">Você entra e é aprovado</h3>
+          <p class="body" style="margin-top:8px;max-width:46ch">Cadastro guiado, com a checagem do seu aparelho.</p>
+        </article>
+
+        <article class="step rv" data-n="02" data-lbl="Kit">
+          <div class="step__top"><span class="step__n">02</span><span class="step__tag">Sem custo</span></div>
+          <h3 class="h3">O kit chega em casa</h3>
+          <p class="body" style="margin-top:8px;max-width:46ch">De graça. E dá para começar antes dele chegar.</p>
+        </article>
+
+        <article class="step rv" data-n="03" data-lbl="Gravação">
+          <div class="step__top"><span class="step__n">03</span><span class="step__tag">1h por dia</span></div>
+          <h3 class="h3">Grava a rotina que já tem</h3>
+          <p class="body" style="margin-top:8px;max-width:46ch">Mais de 86 tarefas domésticas. Sem editar, sem aparecer.</p>
+        </article>
+
+        <article class="step rv" data-n="04" data-lbl="Pix">
+          <div class="step__top"><span class="step__n">04</span><span class="step__tag">Pix</span></div>
+          <h3 class="h3">Aprovou, caiu, você recebe</h3>
+          <p class="body" style="margin-top:8px;max-width:46ch">Com rotina montada, isso vira <b>quase todo dia</b>.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 04 · O MÉTODO ═══════════════════ -->
+<section class="band dark">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">04</span>
+      <span class="mono-label">O método</span>
+      <span class="sec-aside">9 módulos · toque para abrir</span>
+    </div>
+
+    <h2 class="h2 rv" style="max-width:24ch;margin-bottom:clamp(30px,4vw,48px)">
+      Tudo que eu aprendi errando —<br>para você <span class="serif">não errar.</span>
+    </h2>
+
+    <div class="mods rv rv-d1" id="mods" style="border-color:var(--rule-dark)">
+      <div class="mod open" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">01</span><span class="mod__t">Entrada aprovada de primeira</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Cadastro tela por tela, com a checagem do seu aparelho antes de perder tempo.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">02</span><span class="mod__t">O kit gratuito, do pedido ao uso</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Como pedir, o que fazer se demorar e a montagem que deixa o material estável.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">03</span><span class="mod__t">O painel por dentro</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Saldo, horas e taxa de aprovação — e como ler isso para decidir o que gravar hoje.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">04</span><span class="mod__t">A gravação que passa na revisão</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Enquadramento, luz e o erro nº 1 que faz a revisão recusar na hora. Este módulo paga o curso.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">05</span><span class="mod__t">Taxa de aprovação alta</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">O checklist antes de enviar e como chegar na faixa dos 90%.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">06</span><span class="mod__t">Ganhar mais na mesma hora</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Os bônus que quase ninguém ativa e as tarefas que pagam mais pelo mesmo esforço.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">07</span><span class="mod__t">Privacidade e segurança</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">O que nunca entrar no quadro e exatamente o que você aceita ao enviar material.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">08</span><span class="mod__t">Recebimento quase diário</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">Como organizar a rotina para ter valor liberado todos os dias, em vez de esperar o mês fechar.</p>
+        </div></div>
+      </div>
+
+      <div class="mod" style="border-color:var(--rule-dark)">
+        <button class="mod__btn" type="button">
+          <span class="mod__n">09</span><span class="mod__t">A rotina que escala</span><span class="mod__pm"></span>
+        </button>
+        <div class="mod__body"><div class="mod__inner">
+          <p class="body">O bloco diário, a planilha de controle e como encadear tarefas sem desperdiçar tempo.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(30px,4vw,48px);max-width:400px" class="rv">
+      <a class="cta cta--acc" data-checkout href="#oferta">
+        <span>Quero os 9 módulos</span>
+        <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 05 · PROVA SOCIAL ═══════════════════ -->
+<section class="band">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">05</span>
+      <span class="mono-label">Prova social</span>
+      <span class="sec-aside">Quem já aplicou</span>
+    </div>
+
+    <div class="warn rv" style="margin-bottom:clamp(28px,3.5vw,44px)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      <p>
+        <b>⬅️ TROCAR — texto de exemplo.</b> Use depoimentos <b>reais</b>, com autorização.
+        Depoimento inventado é propaganda enganosa (CDC art. 37) e derruba conta de checkout.
+        Sem depoimento real, apague os blocos e deixe só a seção 01.
+      </p>
+    </div>
+
+    <div class="tsts rv rv-d1">
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 1 — antes/depois da taxa de aprovação.]”</p>
+        <div class="tst__who"><span class="tst__av">01</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 2 — valor do primeiro recebimento e em quantos dias.]”</p>
+        <div class="tst__who"><span class="tst__av">02</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 3 — quase desistiu na primeira semana e voltou.]”</p>
+        <div class="tst__who"><span class="tst__av">03</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 4 — mãe ou pai gravando a rotina que já faria.]”</p>
+        <div class="tst__who"><span class="tst__av">04</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 5 — dobrou o ganho por hora.]”</p>
+        <div class="tst__who"><span class="tst__av">05</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+      <article class="tst">
+        <span class="tst__st">★★★★★</span>
+        <p class="tst__q">“[Depoimento real 6 — recebe quase todo dia, com extrato.]”</p>
+        <div class="tst__who"><span class="tst__av">06</span><span><b>[Nome]</b><span>[Cidade — UF]</span></span></div>
+      </article>
+    </div>
+
+    <div class="cols cols--12" style="margin-top:clamp(36px,4.5vw,60px)">
+      <div class="c-4 rv">
+        <h3 class="h3">Comprovantes</h3>
+        <p class="fine" style="margin-top:10px">Print de Pix e do painel. Tampe os dados.</p>
+      </div>
+      <div class="end-7 rv rv-d1">
+        <div class="slots">
+          <div class="slot"><span class="mono-label">01</span><p><b>⬅️ TROCAR</b><br>Pix recebido</p></div>
+          <div class="slot"><span class="mono-label">02</span><p><b>⬅️ TROCAR</b><br>Painel de aprovação</p></div>
+          <div class="slot"><span class="mono-label">03</span><p><b>⬅️ TROCAR</b><br>O kit que chegou</p></div>
+          <div class="slot"><span class="mono-label">04</span><p><b>⬅️ TROCAR</b><br>Aluno no WhatsApp</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 06 · GRÁTIS vs PAGO ═══════════════════ -->
+<section class="band" style="background:var(--paper-2)">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">06</span>
+      <span class="mono-label">Transparência</span>
+      <span class="sec-aside">Sem letra miúda</span>
+    </div>
+
+    <h2 class="h2 rv" style="max-width:24ch;margin-bottom:clamp(28px,3.5vw,44px)">
+      Você paga pelo <span class="uline">atalho</span>.<br>Não pelo acesso.
+    </h2>
+
+    <div class="tp rv rv-d1">
+      <div class="tp__col">
+        <div class="tp__hd">
+          <span class="tp__pill tp__pill--free">Não custa nada</span>
+          <span class="mono-label">a plataforma</span>
+        </div>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--acc-txt)" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Participar</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--acc-txt)" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>O kit em casa</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--acc-txt)" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Receber no Pix</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--acc-txt)" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Gravar com o seu celular</span></li>
+        </ul>
+        <p class="fine" style="margin-top:18px">
+          <b style="color:var(--ink)">A plataforma é gratuita e independe deste curso.</b>
+        </p>
+      </div>
+
+      <div class="tp__col tp__col--paid">
+        <div class="tp__hd">
+          <span class="tp__pill tp__pill--paid">Você paga</span>
+          <span class="mono-label">só o método</span>
+        </div>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2.4"><path d="M5 12h14"/></svg><span>O caminho pronto, sem tentativa e erro</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2.4"><path d="M5 12h14"/></svg><span>O que segura a aprovação lá em cima</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2.4"><path d="M5 12h14"/></svg><span>A rotina e a planilha</span></li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2.4"><path d="M5 12h14"/></svg><span>Suporte quando um vídeo for rejeitado</span></li>
+        </ul>
+        <p class="fine" style="margin-top:18px">
+          Curso <b style="color:var(--ink)">independente</b>, sem vínculo com a empresa.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 07 · OFERTA ═══════════════════ -->
+<section class="band dark" id="oferta">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">07</span>
+      <span class="mono-label">A oferta</span>
+      <span class="sec-aside">Acesso imediato · 7 dias de garantia</span>
+    </div>
+
+    <div class="offer">
+      <div class="rv">
+        <h2 class="h2" style="max-width:22ch" data-cfg="productName">Filmou / Ganhou — Acesso Completo</h2>
+        <p class="pull" style="margin:16px 0 clamp(24px,3vw,36px);max-width:26ch">
+          O curso custa <span class="acc">uma hora</span> de gravação aprovada.
+        </p>
+
+        <ul class="inc">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>9 módulos em vídeo</b></span><span class="inc__v">Incluso</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Checklist</b> de pré-envio</span><span class="inc__v">Incluso</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Lista</b> das tarefas que pagam mais</span><span class="inc__v">Incluso</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Plano de 30 dias</b></span><span class="inc__v">Incluso</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Grupo de suporte</b></span><span class="inc__v">Incluso</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Atualizações vitalícias</b></span><span class="inc__v">Incluso</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rv rv-d1">
+        <div class="pricebox">
+          <span class="off" data-cfg="offBadge">74% OFF</span>
+
+          <div class="deal">
+            <span class="deal__tag">Preço normal</span>
+            <span class="deal__de"><s data-cfg="anchorTotal">R$ 97</s></span>
+          </div>
+          <p class="mono-label" style="margin-top:14px">Hoje, pagamento único</p>
+          <p class="price"><sup>R$</sup><em data-cfg="price">25</em></p>
+          <p class="fine" data-cfg="priceNote">no Pix ou no cartão · acesso na hora</p>
+
+          <div class="hourbox">
+            <div class="hourbox__eq">
+              <span class="hourbox__cell"><b>R$ 25</b><span>o curso, uma vez</span></span>
+              <span class="hourbox__is">=</span>
+              <span class="hourbox__cell"><b>1 hora</b><span>gravada e aprovada</span></span>
+            </div>
+            <p>
+              Você recupera o valor <b>na primeira hora</b> de gravação aprovada.
+              Da segunda em diante já é lucro.
+            </p>
+          </div>
+
+          <div style="margin-top:24px">
+            <a class="cta cta--acc" data-checkout href="#" style="width:100%;min-width:0">
+              <span>Garantir meu acesso</span>
+              <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            </a>
+            <div class="cta-note">
+              <span>Seguro</span><span>Acesso na hora</span><span>Pix ou cartão</span>
+            </div>
+          </div>
+
+          <div class="grt">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div>
+              <b>7 dias de garantia</b>
+              <p>Não valeu? Devolvo 100% do valor, sem justificar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 08 · FAQ ═══════════════════ -->
+<section class="band">
+  <div class="shell">
+    <div class="sec-head rv">
+      <span class="sec-num">08</span>
+      <span class="mono-label">Perguntas frequentes</span>
+      <span class="sec-aside">Toque para abrir</span>
+    </div>
+
+    <div class="cols cols--12">
+      <div class="c-4">
+        <h2 class="h2 rv" style="position:sticky;top:110px">Ainda com <span class="serif">dúvida?</span></h2>
+      </div>
+
+      <div class="end-7">
+        <div class="faq rv rv-d1" id="faq">
+          <div class="faq__i open">
+            <button class="faq__q" type="button">Preciso investir algum dinheiro?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p><b style="color:var(--ink)">Não.</b> Sem taxa, sem equipamento. O kit chega de graça e você usa o celular que já tem. O único valor pago aqui é o <b style="color:var(--ink)">deste curso</b>, que é opcional.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Quanto eu ganho de verdade?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p><b style="color:var(--ink)">R$ 25 por hora aprovada</b> — R$ 30 nas tarefas de maior valor. Use a calculadora da seção 02 com os seus números.</p>
+              <p class="fine">Não é promessa de renda. Depende de quanto você grava e de quanto passa na revisão.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Dá para receber todos os dias?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p>Sim, desde que haja saldo aprovado. Quem grava todo dia passa a ter aprovação entrando todo dia. O módulo 08 monta essa rotina.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Preciso de experiência?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p>Nenhuma. Sem edição, sem roteiro, sem falar e sem aparecer o rosto. É a sua rotina, em primeira pessoa.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Meu celular funciona?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p>A maioria dos aparelhos de linha dos últimos anos, iPhone ou Android. O <b style="color:var(--ink)">módulo 01</b> mostra como checar o seu em um minuto.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Preciso vender ou indicar alguém?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p><b style="color:var(--ink)">Não.</b> Não é pirâmide nem multinível. Você é pago pelo material que você mesmo grava.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">E a minha privacidade?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p>Tem coisa que <b style="color:var(--ink)">nunca</b> deve entrar no quadro, e o módulo 07 mostra como preparar o ambiente em 30 segundos.</p>
+              <p>Ele também explica, com o texto na mão, <b style="color:var(--ink)">o que você aceita</b> ao enviar uma gravação — inclusive sobre a propriedade do material.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">Quanto tempo por dia?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p>O método é montado em <b style="color:var(--ink)">uma hora por dia</b> — de tarefa que você já faria de qualquer forma. Dá para fazer mais ou menos.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">O curso é oficial da empresa?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p><b style="color:var(--ink)">Não.</b> É independente, sem vínculo nem patrocínio. Regras e valores são da empresa e podem mudar.</p>
+            </div></div>
+          </div>
+
+          <div class="faq__i">
+            <button class="faq__q" type="button">E se eu não gostar?<span class="mod__pm"></span></button>
+            <div class="faq__a"><div class="faq__a-in body">
+              <p><b style="color:var(--ink)">7 dias de garantia.</b> Devolvo 100%, sem justificar.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+<section class="band dark final">
+  <div class="final__bg"></div>
+  <div class="shell final__in">
+    <div class="cols cols--12">
+      <div class="c-8">
+        <h2 class="display rv" style="font-size:clamp(2.3rem,6.4vw,5.2rem)">
+          <span class="ln"><i>A louça você vai</i></span>
+          <span class="ln"><i>lavar de qualquer jeito.</i></span>
+          <span class="ln"><i><span class="serif">A escolha</span> é só se</i></span>
+          <span class="ln"><i>vai ser <span class="uline">pago</span> por isso.</i></span>
+        </h2>
+      </div>
+
+      <div class="end-4 rv rv-d2" style="display:flex;flex-direction:column;justify-content:flex-end;gap:22px">
+        <p class="pull">Sua hora vale R$ 7,37.<br>Ou vale <span class="acc">R$ 25</span>.</p>
+        <p class="fine" style="margin-top:-8px">
+          E o curso custa exatamente <b style="color:var(--on-dark)">uma</b> dessas horas.
+        </p>
+        <a class="cta cta--acc" data-checkout href="#" style="width:100%;min-width:0">
+          <span>Sim, quero o método</span>
+          <svg class="cta__arrow" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+        </a>
+        <div class="cta-note" style="margin-top:0">
+          <span><b>R$ <span data-cfg="price">25</span></b></span><span>pagamento único</span><span>7 dias de garantia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DOCK MOBILE ═══════════════════ -->
+<div class="dock" id="dock">
+  <span class="dock__t"><b>R$ <span data-cfg="price">25</span></b>acesso imediato</span>
+  <a class="cta" data-checkout href="#oferta">
+    <span>Quero agora</span>
+    <svg class="cta__arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+  </a>
+</div>
+
+<!-- ═══════════════════ RODAPÉ ═══════════════════ -->
+<footer>
+  <div class="shell">
+    <div class="foot__top">
+      <div class="foot__logo">Filmou<i>/</i>Ganhou</div>
+      <div class="foot__links">
+        <a data-cfg-href="supportUrl" href="#"><span data-cfg="supportLabel">[seu e-mail ou WhatsApp]</span></a>
+        <a data-cfg-href="termsUrl" href="#">Termos de uso</a>
+        <a data-cfg-href="privacyUrl" href="#">Política de privacidade</a>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p>
+        <b>Aviso legal.</b> Esta página divulga um <b>curso independente</b> sobre como gravar e enviar
+        tarefas domésticas para plataformas de coleta de dados. Não é página oficial de nenhuma
+        plataforma, não possui vínculo, patrocínio, endosso ou representação, e as marcas
+        eventualmente citadas pertencem aos seus respectivos titulares.
+      </p>
+      <p>
+        <b>Sobre a comparação com o salário mínimo.</b> O piso nacional de 2026 é de R$ 1.621
+        (Decreto nº 12.797/2025), equivalente a R$ 7,37 por hora na base de 220 horas mensais da CLT.
+        A comparação é ilustrativa: o vínculo CLT assegura 13º salário, férias com adicional de um terço,
+        FGTS, INSS e o pagamento do valor integral, benefícios que <b>não existem</b> na gravação
+        remunerada. Alguns estados possuem piso regional superior ao nacional.
+      </p>
+      <p>
+        <b>Sobre ganhos.</b> Os valores citados (R$ 25 a R$ 30 por hora aprovada) são informações
+        divulgadas pela plataforma e relatos públicos, apresentados apenas como referência.
+        <b>Não constituem promessa, garantia ou projeção de renda.</b> O pagamento é por hora de gravação
+        aprovada e os resultados variam conforme volume gravado, qualidade, disponibilidade de tarefas na
+        região e critérios de revisão da empresa, que podem mudar a qualquer momento. As simulações da
+        página são hipotéticas e dependem de haver tarefas suficientes disponíveis, o que não é garantido.
+      </p>
+      <p>
+        <b>Sobre a participação.</b> A participação na plataforma é <b>gratuita</b> e independe da compra
+        deste curso: não há taxa de adesão e o kit de gravação é enviado sem custo. Ao enviar material
+        você aceita os termos da empresa, que incluem a cessão do conteúdo gravado, com possibilidade de
+        transferência a terceiros. Leia os termos antes de gravar.
+      </p>
+    </div>
+
+    <div class="foot__end">
+      <span data-cfg="legal">[SEU NOME OU RAZÃO SOCIAL] — CNPJ/CPF [PREENCHER]</span>
+      <span>© <span id="year">2026</span> — Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+/* ==================================================================
+   ⚙️  CONFIG — EDITE SÓ AQUI
+   ==================================================================
+   Troque os valores entre as aspas e salve.
+   Onde estiver "" (vazio), o item ainda precisa ser preenchido.
+   ================================================================== */
+const CONFIG = {
+
+  /* --- 1. LINK DE PAGAMENTO (o mais importante) ------------------ */
+  /* URL do checkout: Kiwify, Hotmart, Eduzz, Cakto, Kirvano, Stripe */
+  checkoutUrl: "",              // ⬅️ TROCAR  ex: "https://pay.kiwify.com.br/abc123"
+
+  /* --- 2. VÍDEO DO TOPO ----------------------------------------- */
+  /* Aceita qualquer um destes formatos:                            */
+  /*   ID do YouTube ....... "dQw4w9WgXcQ"                          */
+  /*   Link do YouTube ..... "https://youtu.be/dQw4w9WgXcQ"         */
+  /*   Link do Vimeo ....... "https://vimeo.com/123456789"          */
+  /*   Arquivo local ....... "meu-video.mp4"                        */
+  videoEmbed: "",               // ⬅️ TROCAR
+  videoEmbedHtml: "",           // opcional: cole o <script>/<iframe> da sua VSL aqui
+  videoTitle: "Como eu gravo 1 hora por dia e saco no Pix",
+
+  /* --- 3. PREÇO ------------------------------------------------- */
+  price: "25",                  // ⬅️ TROCAR — só o número, sem "R$"
+  priceNote: "no Pix ou no cartão · acesso na hora",
+  anchorTotal: "R$ 97",         // preço "normal" riscado — mantenha crível
+  offBadge: "74% OFF",          // recalcule se mudar price/anchorTotal
+  productName: "Filmou / Ganhou — Acesso Completo",
+
+  /* --- 4. RODAPÉ / LEGAL ---------------------------------------- */
+  legal: "[SEU NOME OU RAZÃO SOCIAL] — CNPJ/CPF [PREENCHER]",  // ⬅️ TROCAR
+  supportLabel: "[seu e-mail ou WhatsApp]",                     // ⬅️ TROCAR
+  supportUrl: "",               // ⬅️ TROCAR  ex: "https://wa.me/5511999999999"
+  termsUrl: "",                 // ⬅️ TROCAR
+  privacyUrl: "",               // ⬅️ TROCAR
+};
+/* ======================== FIM DO CONFIG ============================ */
+
+
+(function () {
+  "use strict";
+  const $  = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- textos e links do CONFIG ---------- */
+  $$("[data-cfg]").forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v) el.textContent = v; });
+  $$("[data-cfg-href]").forEach(el => {
+    const v = CONFIG[el.dataset.cfgHref];
+    if (v) el.href = v; else { el.removeAttribute("href"); el.style.opacity = ".55"; }
+  });
+
+  /* ---------- checkout ---------- */
+  $$("[data-checkout]").forEach(a => {
+    if (CONFIG.checkoutUrl) {
+      a.href = CONFIG.checkoutUrl; a.target = "_blank"; a.rel = "noopener";
+    } else if (a.getAttribute("href") === "#") {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        alert('⚙️ Falta configurar o link de pagamento.\n\nAbra o index.html, ache o bloco CONFIG no final e preencha "checkoutUrl".');
+      });
+    }
+  });
+
+  /* ---------- marquee com tarefas reais da plataforma ---------- */
+  const TASKS = [
+    ["Manaus","Reposição e organização de prateleiras"],
+    ["Salvador","Reparar e pintar paredes"],
+    ["Brasília","Passear com o cachorro"],
+    ["Campinas","Cuidados pessoais"],
+    ["Porto Alegre","Dobrar roupas"],
+    ["Ribeirão Preto","Troca de óleo e fluidos"],
+    ["Belo Horizonte","Tirar o pó e limpar superfícies"],
+    ["Natal","Higiene e banho de pets"],
+    ["Curitiba","Montagem e desmontagem de móveis"],
+    ["Belém","Jardinagem"],
+    ["São Paulo","Aspirar"],
+    ["Recife","Limpeza de piscina"],
+    ["Florianópolis","Alimentar os pets"],
+    ["Goiânia","Carregar o carro"],
+    ["Fortaleza","Varrer a varanda"],
+    ["Londrina","Recolher roupas em um cesto"],
+    ["Rio de Janeiro","Lavar e detalhar o carro"]
+  ];
+  const mqHTML = TASKS.map(t =>
+    '<span class="mq__item"><b>' + t[0] + '</b> ' + t[1] + '</span>'
+  ).join("");
+  const r1 = $("#mqRow"), r2 = $("#mqRow2");
+  if (r1 && r2) { r1.innerHTML = mqHTML; r2.innerHTML = mqHTML; }
+
+  /* ---------- vídeo ---------- */
+  (function () {
+    const poster = $("#vidPoster"), ratio = $("#vidRatio");
+    if (!poster || !ratio) return;
+
+    function embed() {
+      if (CONFIG.videoEmbedHtml) return CONFIG.videoEmbedHtml;
+      const v = (CONFIG.videoEmbed || "").trim();
+      if (!v) return null;
+      if (/\.(mp4|webm|mov)(\?|$)/i.test(v))
+        return '<video src="' + v + '" controls autoplay playsinline></video>';
+      const vim = v.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if (vim)
+        return '<iframe src="https://player.vimeo.com/video/' + vim[1] + '?autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+      let id = v;
+      const yt = v.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+      if (yt) id = yt[1];
+      if (/^[A-Za-z0-9_-]{11}$/.test(id))
+        return '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+      return '<iframe src="' + v + '" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    }
+
+    poster.addEventListener("click", () => {
+      const html = embed();
+      if (!html) {
+        alert('⚙️ Falta configurar o vídeo.\n\nAbra o index.html, ache o bloco CONFIG no final e preencha "videoEmbed"\n(ID do YouTube, link do Vimeo ou nome do arquivo .mp4).');
+        return;
+      }
+      ratio.innerHTML = html;
+    });
+  })();
+
+  /* ---------- revelação no scroll ---------- */
+  document.documentElement.classList.add("js-reveal");
+  document.body.classList.add("js-reveal");
+  const revs = $$(".rv, h1.display, .final h2");
+  if (reduce || !("IntersectionObserver" in window)) {
+    /* sem animação: mostra tudo. Nunca deixar conteúdo invisível. */
+    revs.forEach(e => e.classList.add("in"));
+  } else {
+    /* threshold baixo de propósito: um bloco mais alto que a tela nunca
+       alcançaria uma proporção alta e ficaria invisível para sempre. */
+    const io = new IntersectionObserver((es, obs) => {
+      es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
+      });
+    }, { threshold: .01, rootMargin: "0px 0px -6% 0px" });
+    revs.forEach(e => io.observe(e));
+    // o hero aparece de imediato
+    requestAnimationFrame(() => {
+      $$(".hero .rv, .hero h1").forEach(e => e.classList.add("in"));
+    });
+  }
+
+  /* ---------- contadores ---------- */
+  const nums = $$("[data-count]");
+  if (nums.length) {
+    const cio = new IntersectionObserver((es, obs) => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        const el = e.target;
+        const to = parseFloat(el.dataset.count);
+        const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+        const fmt = n => n.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+        if (reduce) { el.textContent = pre + fmt(to) + suf; return; }
+        const t0 = performance.now(), dur = 1500;
+        (function step(t) {
+          const p = Math.min((t - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + fmt(Math.round(to * eased)) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        })(t0);
+      });
+    }, { threshold: .5 });
+    nums.forEach(n => cio.observe(n));
+  }
+
+  /* ---------- acordeões (módulos + FAQ) ---------- */
+  function accordion(rootSel, itemSel, btnSel, bodySel) {
+    const root = $(rootSel);
+    if (!root) return;
+    const items = $$(itemSel, root);
+
+    function setH(item, open) {
+      const body = $(bodySel, item);
+      if (!body) return;
+      const inner = body.firstElementChild;
+      body.style.height = open ? inner.offsetHeight + "px" : "0px";
+    }
+    items.forEach(item => {
+      const btn = $(btnSel, item);
+      if (!btn) return;
+      setH(item, item.classList.contains("open"));
+      btn.setAttribute("aria-expanded", item.classList.contains("open") ? "true" : "false");
+      btn.addEventListener("click", () => {
+        const willOpen = !item.classList.contains("open");
+        items.forEach(o => {
+          if (o !== item && o.classList.contains("open")) {
+            o.classList.remove("open"); setH(o, false);
+            const b = $(btnSel, o); if (b) b.setAttribute("aria-expanded", "false");
+          }
+        });
+        item.classList.toggle("open", willOpen);
+        btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        setH(item, willOpen);
+      });
+    });
+    addEventListener("resize", () => {
+      items.forEach(i => { if (i.classList.contains("open")) setH(i, true); });
+    }, { passive: true });
+  }
+  accordion("#mods", ".mod", ".mod__btn", ".mod__body");
+  accordion("#faq", ".faq__i", ".faq__q", ".faq__a");
+
+  /* ---------- calculadora de estimativa ---------- */
+  (function () {
+    const hs = $("#cHoras"), ap = $("#cAprov"), seg = $("#cDias");
+    if (!hs || !ap || !seg) return;
+
+    const TAXA_HORA = 25;      // R$ por hora aprovada
+    const SEMANAS_MES = 4.33;  // 52 semanas / 12 meses
+    const META = 90;           // aprovação alvo com o método
+
+    const brl = n => n.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+    let dias = 5;
+
+    function calc() {
+      const horasDia = +hs.value;
+      const aprov = +ap.value;
+
+      const gravadas = horasDia * dias * SEMANAS_MES;
+      const aprovadas = gravadas * (aprov / 100);
+      const total = aprovadas * TAXA_HORA;
+
+      /* ganho ao levar a aprovação até a meta, gravando as mesmas horas */
+      const alvo = Math.max(aprov, META);
+      const delta = gravadas * ((alvo - aprov) / 100) * TAXA_HORA;
+
+      $("#vHoras").textContent = horasDia + "h";
+      $("#vDias").textContent = dias + " dias";
+      $("#vAprov").textContent = aprov + "%";
+
+      $("#oTotal").textContent = brl(total);
+      $("#oGravadas").textContent = Math.round(gravadas) + "h";
+      $("#oAprovadas").textContent = Math.round(aprovadas) + "h";
+      $("#oDe").textContent = aprov + "%";
+
+      const box = $(".calc__delta");
+      if (delta > 0) {
+        box.style.display = "";
+        $("#oDelta").textContent = "+ R$ " + brl(delta) + " / mês";
+      } else {
+        /* já está na meta ou acima: não invento ganho que não existe */
+        box.style.display = "none";
+      }
+    }
+
+    hs.addEventListener("input", calc);
+    ap.addEventListener("input", calc);
+    $$("button", seg).forEach(b => {
+      b.addEventListener("click", () => {
+        dias = +b.dataset.d;
+        $$("button", seg).forEach(o => o.setAttribute("aria-pressed", o === b ? "true" : "false"));
+        calc();
+      });
+    });
+    calc();
+  })();
+
+  /* ---------- passos fixos ---------- */
+  (function () {
+    const list = $("#stepList"), big = $("#stepBig"), lbl = $("#stepLbl");
+    if (!list || !big) return;
+    const steps = $$(".step", list);
+    const sio = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        steps.forEach(s => s.classList.remove("act"));
+        e.target.classList.add("act");
+        big.textContent = e.target.dataset.n;
+        if (lbl) lbl.textContent = e.target.dataset.lbl;
+      });
+    }, { threshold: .5, rootMargin: "-20% 0px -35% 0px" });
+    steps.forEach(s => sio.observe(s));
+  })();
+
+  /* ---------- nav, dock e barra de progresso ---------- */
+  (function () {
+    const nav = $("#nav"), dock = $("#dock"), prog = $("#prog"), offer = $("#oferta");
+    let raf = null;
+    function upd() {
+      raf = null;
+      const y = scrollY;
+      const h = document.documentElement.scrollHeight - innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+      const past = y > innerHeight * .85;
+      if (nav) nav.classList.toggle("on", past);
+      if (dock && offer) {
+        const r = offer.getBoundingClientRect();
+        const inOffer = r.top < innerHeight && r.bottom > 0;
+        dock.classList.toggle("on", past && !inOffer);
+      }
+    }
+    addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+    addEventListener("resize", upd, { passive: true });
+    upd();
+  })();
+
+  /* ---------- cursor personalizado (desktop) ---------- */
+  (function () {
+    if (reduce || matchMedia("(hover:none)").matches) return;
+    const c = $("#cursor");
+    if (!c) return;
+    let x = 0, y = 0, cx = 0, cy = 0, on = false;
+    addEventListener("mousemove", e => {
+      x = e.clientX; y = e.clientY;
+      if (!on) { on = true; c.classList.add("on"); cx = x; cy = y; }
+    }, { passive: true });
+    (function loop() {
+      cx += (x - cx) * .18; cy += (y - cy) * .18;
+      c.style.transform = "translate(" + cx + "px," + cy + "px) translate(-50%,-50%)";
+      requestAnimationFrame(loop);
+    })();
+    document.addEventListener("mouseover", e => {
+      const t = e.target.closest("a,button,.vid__poster,.slot");
+      c.classList.toggle("big", !!t);
+    });
+    addEventListener("mouseout", e => { if (!e.relatedTarget) c.classList.remove("on"); });
+  })();
+
+  /* ---------- ano ---------- */
+  const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

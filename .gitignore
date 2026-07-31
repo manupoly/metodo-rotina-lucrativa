@@ -1,0 +1,16 @@
+# Windows / OneDrive
+desktop.ini
+Thumbs.db
+*.lnk
+
+# macOS
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Rascunhos e backups
+*.bak
+*~
