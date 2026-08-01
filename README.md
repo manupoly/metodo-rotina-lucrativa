@@ -14,6 +14,12 @@ Dois tokens de verde, e a diferença entre eles não é estética:
 
 Toda superfície escura precisa estar no seletor que remapeia `--acc-txt` (logo abaixo do `:root`). Painel escuro que ficar de fora herda o verde de papel sobre preto e sai a 3,4:1.
 
+## Ícone da aba
+
+`favicon.svg` — nota de dólar verde acesa sobre pastilha escura. A pastilha não é decoração: sem ela o halo verde desaparece numa barra de abas clara. É SVG, então escala sem perder nitidez; navegadores muito antigos simplesmente não mostram ícone nenhum, sem quebrar nada.
+
+Para mudar a cor, são dois valores no arquivo: `#0fd96b` no corpo da nota e `#0b7a44` nos traços.
+
 ## Como editar
 
 Todo o conteúdo variável (link de checkout, vídeo, preço, rodapé legal) está centralizado no bloco `CONFIG`, no final do `index.html`. Procure por `⬅️ TROCAR` para achar o que ainda falta preencher:

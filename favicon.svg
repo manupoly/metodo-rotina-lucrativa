@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Método Rotina Lucrativa">
+  <!--
+    Favicon: nota de dólar verde acesa, no espírito do emoji 💵.
+
+    Pastilha escura por baixo de propósito: sem ela o halo verde some na barra
+    de abas clara. Com ela, o ícone lê igual no tema claro e no escuro.
+
+    A nota é desenhada em camadas, como cédula de verdade: corpo, moldura
+    interna, medalhão claro no centro (a "janela do retrato") e rosetas nos
+    cantos. A 16px só a silhueta e o medalhão sobrevivem — que é exatamente
+    como o emoji se comporta nesse tamanho. O cifrão aparece a partir de 32px.
+
+    Cores da marca: verde #0fd96b no corpo, #0b7a44 nos traços.
+  -->
+  <defs>
+    <filter id="halo" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.4"/>
+    </filter>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6bffab"/>
+      <stop offset="1" stop-color="#0bc45f"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#0fd96b" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#0fd96b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#141414"/>
+  <rect width="64" height="64" rx="14" fill="url(#bloom)"/>
+
+  <!-- a inclinação é o que faz o olho ler "nota", e não "cartão" -->
+  <g transform="rotate(-10 32 32)">
+    <rect x="4" y="19" width="56" height="26" rx="2.6" fill="#0fd96b" opacity=".9" filter="url(#halo)"/>
+
+    <rect x="4" y="19" width="56" height="26" rx="2.6" fill="url(#face)"/>
+    <rect x="7.6" y="22.6" width="48.8" height="18.8" rx="1.7" fill="none"
+          stroke="#0b7a44" stroke-opacity=".5" stroke-width="1.1"/>
+
+    <!-- medalhão: é ele que carrega a leitura a 16px -->
+    <circle cx="32" cy="32" r="8" fill="#c6ffdd"/>
+    <circle cx="32" cy="32" r="8" fill="none" stroke="#0b7a44" stroke-opacity=".55" stroke-width="1.1"/>
+
+    <g fill="none" stroke="#0b7a44" stroke-width="1.9" stroke-linecap="round">
+      <path d="M35 29.5c0-1.3-1.3-2-3-2s-3 .7-3 2c0 1.4 1.4 1.8 3 2.2s3 .9 3 2.3c0 1.3-1.3 2.1-3 2.1s-3-.8-3-2.1"/>
+      <path d="M32 25.8v12.4"/>
+    </g>
+
+    <!-- rosetas dos cantos: viram textura no tamanho pequeno, detalhe no grande -->
+    <g fill="#0b7a44" fill-opacity=".42">
+      <circle cx="12.4" cy="26.4" r="2.2"/>
+      <circle cx="51.6" cy="26.4" r="2.2"/>
+      <circle cx="12.4" cy="37.6" r="2.2"/>
+      <circle cx="51.6" cy="37.6" r="2.2"/>
+    </g>
+  </g>
+</svg>
