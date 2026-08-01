@@ -22,8 +22,11 @@ Toda superfície escura precisa estar no seletor que remapeia `--acc-txt` (logo 
 | `icone-rotina-lucrativa-dark.svg` | figura clara — **fundo escuro** (cabeçalho e rodapé) |
 | `rotina-lucrativa-lockup-dark.png` | lockup com fundo chapado — só para `og:image` |
 | `favicon.svg` | o mesmo boneco sobre pastilha escura, com contraluz verde |
+| `favicon-32.png` | o `favicon.svg` rasterizado — **fallback** de aba |
 
 Trocar uma variante do ícone pela outra faz a marca sumir dentro do fundo. O `favicon.svg` repete as formas do `-dark`: se o logo mudar, é aquele bloco de formas que precisa ser atualizado junto.
+
+O `favicon-32.png` existe porque SVG como favicon não funciona no Safari abaixo do 16 nem em navegadores antigos — sem ele, esse grupo pede `/favicon.ico`, não encontra e mostra ícone genérico. Ele é **derivado** do `favicon.svg`: mudou o logo, precisa regerar os dois. Não há rasterizador no projeto; o PNG foi gerado desenhando o SVG num `<canvas>` e exportando com `toDataURL`.
 
 A pastilha escura do favicon não é decoração — a figura é clara, e sem ela o ícone desapareceria numa barra de abas branca.
 
