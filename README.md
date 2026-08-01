@@ -14,11 +14,18 @@ Dois tokens de verde, e a diferença entre eles não é estética:
 
 Toda superfície escura precisa estar no seletor que remapeia `--acc-txt` (logo abaixo do `:root`). Painel escuro que ficar de fora herda o verde de papel sobre preto e sai a 3,4:1.
 
-## Ícone da aba
+## Marca
 
-`favicon.svg` — nota de dólar verde acesa sobre pastilha escura. A pastilha não é decoração: sem ela o halo verde desaparece numa barra de abas clara. É SVG, então escala sem perder nitidez; navegadores muito antigos simplesmente não mostram ícone nenhum, sem quebrar nada.
+| arquivo | onde usar |
+| --- | --- |
+| `icone-rotina-lucrativa.svg` | figura em tinta escura — **fundo claro** |
+| `icone-rotina-lucrativa-dark.svg` | figura clara — **fundo escuro** (cabeçalho e rodapé) |
+| `rotina-lucrativa-lockup-dark.png` | lockup com fundo chapado — só para `og:image` |
+| `favicon.svg` | o mesmo boneco sobre pastilha escura, com contraluz verde |
 
-Para mudar a cor, são dois valores no arquivo: `#0fd96b` no corpo da nota e `#0b7a44` nos traços.
+Trocar uma variante do ícone pela outra faz a marca sumir dentro do fundo. O `favicon.svg` repete as formas do `-dark`: se o logo mudar, é aquele bloco de formas que precisa ser atualizado junto.
+
+A pastilha escura do favicon não é decoração — a figura é clara, e sem ela o ícone desapareceria numa barra de abas branca.
 
 ## Como editar
 
