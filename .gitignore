@@ -17,3 +17,8 @@ Thumbs.db
 
 # arquivo-fonte do logo, nao precisa ir para o site
 *.zip
+
+# gerador do PDF de producao: mora no repo PRIVADO
+# metodo-rotina-lucrativa-producao. Este repo e publico e servido pelo
+# GitHub Pages — roteiro da VSL e aulas nao entram aqui.
+tools/
