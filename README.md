@@ -54,6 +54,23 @@ O `favicon-32.png` existe porque SVG como favicon não funciona no Safari abaixo
 
 A pastilha escura do favicon não é decoração — a figura é clara, e sem ela o ícone desapareceria numa barra de abas branca.
 
+## A seção "O mercado"
+
+Substituiu a faixa rolante de cidades e tarefas. É montada pelo JS a partir de `CONFIG.mercado`, uma lista de cards:
+
+```js
+mercado: [
+  { tipo:"video",   url:"dQw4w9WgXcQ",   titulo:"…", fonte:"Canal da empresa", data:"2026" },
+  { tipo:"noticia", url:"https://…",     titulo:"…", fonte:"Reuters", data:"mar/2026", resumo:"…" },
+],
+```
+
+`tipo:"video"` abre o player dentro do próprio card ao clicar — nada é carregado antes disso, então dez cards não custam dez players. A `url` aceita ID do YouTube, link do YouTube/Vimeo ou arquivo de vídeo, pelo mesmo parser que o vídeo do topo usa.
+
+`tipo:"noticia"` transforma o card inteiro em link e abre em outra aba.
+
+**Com a lista vazia, a seção se remove do DOM.** É proposital: moldura vazia converte pior que seção ausente — a mesma lição da seção 00. Só entre com reportagem de veículo identificável e com data; notícia sem fonte enfraquece em vez de provar.
+
 ## Como editar
 
 Todo o conteúdo variável (link de checkout, vídeo, preço, rodapé legal) está centralizado no bloco `CONFIG`, no final do `index.html`. Procure por `⬅️ TROCAR` para achar o que ainda falta preencher:
