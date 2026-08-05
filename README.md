@@ -4,7 +4,20 @@ Landing page estática do curso **Método Rotina Lucrativa**: um único `index.h
 
 ## O que a página vende
 
-Seis módulos, sobre quatro pilares: **cadastrar**, **gravar**, **o que a plataforma não permite gravar** e **sacar**. Se o conteúdo do curso mudar, esta lista e a da oferta (`.inc`) mudam junto — a página não pode prometer módulo que não existe.
+Seis módulos, na ordem em que aparecem no acordeão da seção 04:
+
+| | módulo |
+| --- | --- |
+| 01 | Cadastro: entre na plataforma no primeiro dia |
+| 02 | Como ajustar o kit de gravação |
+| 03 | Grave dentro dos requisitos |
+| 04 | O que a plataforma não permite gravar |
+| 05 | Como funciona o app onde você grava |
+| 06 | Do envio ao saque no Pix |
+
+Se o conteúdo do curso mudar, esta lista, o acordeão e a lista de inclusos da oferta (`.inc`) mudam junto — a página não pode prometer módulo que não existe. Hoje a oferta ainda inclui **"Checklist de pré-envio"**, que era o entregável de um módulo que saiu: confirme se ele continua existindo como material de apoio ou tire da oferta.
+
+A descrição do módulo 05 foi escrita por dedução sobre como um app desse tipo funciona, não a partir do app real — revise antes de rodar tráfego.
 
 Duas coisas que o texto **não** pode voltar a dizer, porque são falsas sobre como a plataforma funciona:
 
