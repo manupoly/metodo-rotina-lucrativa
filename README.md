@@ -1,6 +1,17 @@
-# Filmou / Ganhou — Landing Page
+# Método Rotina Lucrativa — Landing Page
 
-Landing page estática do curso **Filmou / Ganhou**: um único `index.html` com HTML, CSS e JS inline, sem build e sem dependências além das fontes do Google.
+Landing page estática do curso **Método Rotina Lucrativa**: um único `index.html` com HTML, CSS e JS inline, sem build e sem dependências além das fontes do Google.
+
+## O que a página vende
+
+Seis módulos, sobre quatro pilares: **cadastrar**, **gravar**, **o que a plataforma não permite gravar** e **sacar**. Se o conteúdo do curso mudar, esta lista e a da oferta (`.inc`) mudam junto — a página não pode prometer módulo que não existe.
+
+Duas coisas que o texto **não** pode voltar a dizer, porque são falsas sobre como a plataforma funciona:
+
+- que existe escolher a tarefa certa, ou que umas tarefas pagam mais que outras — **toda tarefa da rotina pode virar hora paga**;
+- qualquer promessa de valor mensal, e qualquer preço riscado que nunca foi cobrado.
+
+O eixo do texto é **requisito de aprovação**, nunca reprovação. Palavras como "rejeitado", "recusado" e "reprovado" foram removidas de propósito.
 
 ## Cores
 
@@ -50,8 +61,8 @@ Pendências antes de rodar tráfego pago:
 
 - [ ] `checkoutUrl` — sem ele os botões de compra ficam inativos
 - [ ] `videoEmbed` — vídeo do topo
-- [ ] Depoimentos e prints marcados com `⬅️ TROCAR` (usar material **real**, com autorização)
-- [ ] Dados legais no rodapé: `legal`, `supportUrl`, `termsUrl`, `privacyUrl`
+- [ ] **Seção 00** — os seis depoimentos e os quatro prints ainda são de exemplo, e o aviso interno sobre isso **renderiza para o visitante**. Depoimento inventado é propaganda enganosa (CDC art. 37). Sem material real e autorizado, apague a seção inteira e deixe a página começar na 01.
+- [ ] Dados legais no rodapé: `legal`, `supportUrl`, `termsUrl`, `privacyUrl` — hoje a página promete devolução em 7 dias ao lado de links vazios
 
 ## Rodar localmente
 
